@@ -1,6 +1,6 @@
 package com.napier.sem;
 
-public class App
+public class Project
 {
     public static void main(String[] args)
     {
