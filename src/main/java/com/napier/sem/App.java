@@ -1,10 +1,35 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class App
 {
     public static void main(String[] args)
+    {
+        // Create new Application
+        App a = new App();
+
+        // Connect to database
+        a.connect();
+
+        // Extract employee salary information
+        ArrayList<Country> country = a.getCountry();
+
+        a.printCountries(country);
+
+        // Disconnect from database
+        a.disconnect();
+    }
+    /**
+     * Connection to MySQL database.
+     */
+    private Connection con = null;
+
+    /**
+     * Connect to the MySQL database.
+     */
+    public void connect()
     {
         try
         {
@@ -17,9 +42,7 @@ public class App
             System.exit(-1);
         }
 
-        // Connection to the database
-        Connection con = null;
-        int retries = 100;
+        int retries = 10;
         for (int i = 0; i < retries; ++i)
         {
             System.out.println("Connecting to database...");
@@ -30,9 +53,6 @@ public class App
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
-                // Wait a bit
-                Thread.sleep(10000);
-                // Exit for loop
                 break;
             }
             catch (SQLException sqle)
@@ -45,18 +65,76 @@ public class App
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
+    }
 
-        if (con != null)
-        {
-            try
-            {
+    /**
+     * Disconnect from the MySQL database.
+     */
+    public void disconnect() {
+        if (con != null) {
+            try {
                 // Close connection
                 con.close();
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println("Error closing connection to database");
             }
+        }
+    }
+
+    public ArrayList<Country> getCountry()
+    {
+        try
+        {
+            {
+                // Create an SQL statement
+                Statement stmt = con.createStatement();
+                // Create string for SQL statement
+                String strSelect =
+                        "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital "
+                                + "FROM country";
+
+                // Execute SQL statement
+                ResultSet rset = stmt.executeQuery(strSelect);
+                // Extract employee information
+                ArrayList<Country> country = new ArrayList<Country>();
+                while (rset.next())
+                {
+                    Country cnt = new Country();
+                    cnt.code = rset.getString("country.code");
+                    cnt.name = rset.getString("country.name");
+                    cnt.continent = rset.getString("country.continent");
+                    cnt.region = rset.getString("country.region");
+                    cnt.population = rset.getInt("country.population");
+                    cnt.capital = rset.getString("country.capital");
+                    country.add(cnt);
+                }
+                return country;
+
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of countries.
+     * @param country The list of countries to print.
+     */
+    public void printCountries(ArrayList<Country> country)
+    {
+        // Print header
+        System.out.println(String.format("%-30s %-30s %-30s %-30s %-30s %-30s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+        // Loop over all countries in the list
+        for (Country cnt : country)
+        {
+            String cnt_string =
+                    String.format("%-30s %-30s %-30s %-30s %-30s %-30s",
+                            cnt.code, cnt.name, cnt.continent, cnt.region, cnt.region, cnt.capital);
+            System.out.println(cnt_string);
         }
     }
 }
