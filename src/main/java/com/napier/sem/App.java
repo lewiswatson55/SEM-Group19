@@ -127,13 +127,13 @@ public class App
     public void printCountries(ArrayList<Country> country)
     {
         // Print header
-        System.out.println(String.format("%-30s %-30s %-30s %-30s %-30s %-30s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+        System.out.println(String.format("%-40s %-40s %-40s %-40s %-40s %-40s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
         // Loop over all countries in the list
         for (Country cnt : country)
         {
             String cnt_string =
-                    String.format("%-30s %-30s %-30s %-30s %-30s %-30s",
-                            cnt.code, cnt.name, cnt.continent, cnt.region, cnt.region, cnt.capital);
+                    String.format("%-40s %-40s %-40s %-40s %-40s %-40s",
+                            cnt.code, cnt.name, cnt.continent, cnt.region,cnt.population, cnt.capital);
             System.out.println(cnt_string);
         }
     }
