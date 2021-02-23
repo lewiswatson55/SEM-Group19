@@ -13,10 +13,14 @@ public class App
         // Connect to database
         a.connect();
 
-        // Extract employee salary information
-        ArrayList<Country> country = a.getCountry();
+        // Extract country information
+        // ArrayList<Country> country = a.getCountry();
 
-        a.printCountries(country);
+        // City information
+        ArrayList<City> city = a.getCity();
+
+        // a.printCountries(country);
+        a.printCities(city);
 
         // Disconnect from database
         a.disconnect();
@@ -81,7 +85,7 @@ public class App
         }
     }
 
-    public ArrayList<Country> getCountry()
+   /** public ArrayList<Country> getCountry()
     {
         try
         {
@@ -118,13 +122,13 @@ public class App
             System.out.println("Failed to get country details");
             return null;
         }
-    }
+    } */
 
     /**
      * Prints a list of countries.
      * @param country The list of countries to print.
      */
-    public void printCountries(ArrayList<Country> country)
+   /** public void printCountries(ArrayList<Country> country)
     {
         // Print header
         System.out.println(String.format("%-30s %-30s %-30s %-30s %-30s %-30s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
@@ -134,6 +138,58 @@ public class App
             String cnt_string =
                     String.format("%-30s %-30s %-30s %-30s %-30s %-30s",
                             cnt.code, cnt.name, cnt.continent, cnt.region, cnt.region, cnt.capital);
+            System.out.println(cnt_string);
+        }
+    } */
+    public ArrayList<City> getCity()
+    {
+        try
+        {
+            {
+                // Create an SQL statement
+                Statement stmt = con.createStatement();
+                // Create string for SQL statement
+                String strSelect =
+                        "SELECT city.Name, city.CountryCode, city.District, city.Population "
+                                + "FROM city";
+
+                // Execute SQL statement
+                ResultSet rset = stmt.executeQuery(strSelect);
+                // Extract employee information
+                ArrayList<City> city = new ArrayList<City>();
+                while (rset.next())
+                {
+                    City cnt = new City();
+                    cnt.Name = rset.getString("city.Name");
+                    cnt.CountryCode = rset.getString("city.CountryCode");
+                    cnt.District = rset.getString("city.District");
+                    cnt.Population = rset.getInt("city.Population");
+                    city.add(cnt);
+                }
+                return city;
+
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+    /**
+     * Prints a list of cities.
+     */
+    public void printCities(ArrayList<City> city)
+    {
+        // Print header
+        System.out.println(String.format("%-30s %-30s %-30s %-30s ", "Name", "CountryCode", "District", "Population"));
+        // Loop over all cities in the list
+        for (City cnt : city)
+        {
+            String cnt_string =
+                    String.format("%-30s %-30s %-30s %-30s",
+                            cnt.Name, cnt.CountryCode, cnt.District, cnt.Population);
             System.out.println(cnt_string);
         }
     }
