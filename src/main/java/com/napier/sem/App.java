@@ -16,10 +16,13 @@ public class App
         // Extract country information
         // ArrayList<Country> country = a.getCountry();
 
+        //print country information
+        //a.printCountries(country);
+
         // City information
         ArrayList<City> city = a.getCity();
 
-        // a.printCountries(country);
+        // print city information
         a.printCities(city);
 
         // Disconnect from database
@@ -85,7 +88,7 @@ public class App
         }
     }
 
-   /** public ArrayList<Country> getCountry()
+    public ArrayList<Country> getCountry()
     {
         try
         {
@@ -122,25 +125,25 @@ public class App
             System.out.println("Failed to get country details");
             return null;
         }
-    } */
+    }
 
     /**
      * Prints a list of countries.
      * @param country The list of countries to print.
      */
-   /** public void printCountries(ArrayList<Country> country)
+    public void printCountries(ArrayList<Country> country)
     {
         // Print header
-        System.out.println(String.format("%-30s %-30s %-30s %-30s %-30s %-30s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+        System.out.println(String.format("%-40s %-40s %-40s %-40s %-40s %-40s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
         // Loop over all countries in the list
         for (Country cnt : country)
         {
             String cnt_string =
-                    String.format("%-30s %-30s %-30s %-30s %-30s %-30s",
-                            cnt.code, cnt.name, cnt.continent, cnt.region, cnt.region, cnt.capital);
+                    String.format("%-40s %-40s %-40s %-40s %-40s %-40s",
+                            cnt.code, cnt.name, cnt.continent, cnt.region, cnt.population, cnt.capital);
             System.out.println(cnt_string);
         }
-    } */
+    }
     public ArrayList<City> getCity()
     {
         try
@@ -151,7 +154,7 @@ public class App
                 // Create string for SQL statement
                 String strSelect =
                         "SELECT city.Name, city.CountryCode, city.District, city.Population "
-                                + "FROM city";
+                                + "FROM city,country WHERE country.Code = city.CountryCode AND country.Continent = 'Europe' ORDER BY city.Population DESC;";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
@@ -183,12 +186,12 @@ public class App
     public void printCities(ArrayList<City> city)
     {
         // Print header
-        System.out.println(String.format("%-30s %-30s %-30s %-30s ", "Name", "CountryCode", "District", "Population"));
+        System.out.println(String.format("%-40s %-40s %-40s %-40s ", "Name", "CountryCode", "District", "Population"));
         // Loop over all cities in the list
         for (City cnt : city)
         {
             String cnt_string =
-                    String.format("%-30s %-30s %-30s %-30s",
+                    String.format("%-40s %-40s %-40s %-40s",
                             cnt.Name, cnt.CountryCode, cnt.District, cnt.Population);
             System.out.println(cnt_string);
         }
