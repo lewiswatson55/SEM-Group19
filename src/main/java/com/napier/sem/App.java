@@ -144,6 +144,7 @@ public class App
             System.out.println(cnt_string);
         }
     }
+
     public ArrayList<City> getCity()
     {
         try
