@@ -154,8 +154,8 @@ public class App
                 Statement stmt = con.createStatement();
                 // Create string for SQL statement
                 String strSelect =
-                        "SELECT city.Name, city.CountryCode, city.District, city.Population "
-                                + "FROM city,country WHERE country.Code = city.CountryCode AND country.Continent = 'Europe' ORDER BY city.Population DESC;";
+                        "SELECT city.Name, country.Name, city.CountryCode, city.District, city.Population "
+                                + "FROM city,country WHERE country.Code = city.CountryCode AND country.Name = 'United States' ORDER BY city.Population DESC;";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
