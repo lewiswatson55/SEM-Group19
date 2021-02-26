@@ -1,0 +1,138 @@
+@startuml
+
+actor UR as "User"
+
+rectangle Database
+
+rectangle "Project System" {
+    usecase UC4 as "All countries in
+    the world"
+
+    usecase UCa as "Print countries
+    largest population to smallest"
+
+    UR - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+
+@enduml
+
+@startuml
+actor UR as "User"
+
+rectangle Database
+
+rectangle "Project System" {
+    usecase UC5 as "All countries in
+    a continent"
+
+    usecase UCa as "Print countries
+    largest population to smallest"
+
+    UR - UC5
+    UC5 ..> UCa : include
+    UC5 - Database
+
+@enduml
+
+@startuml
+actor UR as "User"
+
+rectangle Database
+
+rectangle "Project System" {
+    usecase UC6 as "All countries in
+    a region"
+
+    usecase UCa as "Print countries
+    largest population to smallest"
+
+    UR - UC6
+    UC6 ..> UCa : include
+    UC6 - Database
+@enduml
+
+@startuml
+actor UR as "User"
+
+rectangle Database
+
+rectangle "Project System" {
+    usecase UC10 as "All cities in
+    the world"
+
+    usecase UCa as "Print cities
+    largest to smallest"
+
+    UR - UC10
+    UC10 ..> UCa : include
+    UC10 - Database
+@enduml
+
+@startuml
+actor UR as "User"
+
+rectangle Database
+
+rectangle "Project System" {
+    usecase UC11 as "All cities in
+    a continent"
+
+    usecase UCa as "Print cities
+    largest population to smallest"
+
+    UR - UC11
+    UC11 ..> UCa : include
+    UC11 - Database
+@enduml
+
+@startuml
+actor UR as "User"
+
+rectangle Database
+
+rectangle "Project System" {
+    usecase UC12 as "All cities in
+    a region"
+
+    usecase UCa as "Print cities
+    largest population to smallest"
+
+    UR - UC12
+    UC12 ..> UCa : include
+    UC12 - Database
+@enduml
+
+@startuml
+actor UR as "User"
+
+rectangle Database
+
+rectangle "Project System" {
+    usecase UC13 as "All cities in
+    a country"
+
+    usecase UCa as "Print cities
+    largest population to smallest"
+
+    UR - UC13
+    UC13 ..> UCa : include
+    UC13 - Database
+@enduml
+
+@startuml
+actor UR as "User"
+
+rectangle Database
+
+rectangle "Project System" {
+    usecase UC14 as "All cities in
+    a district"
+
+    usecase UCa as "Print cities
+    largest population to smallest"
+
+    UR - UC14
+    UC14 ..> UCa : include
+    UC14 - Database
+@enduml
