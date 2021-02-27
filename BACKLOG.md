@@ -35,7 +35,7 @@ Sprint goal - Use cases/diagrams and zube set up, tasks defined as user stories 
 - All the countries in the world organised by largest population to smallest.
 - All the countries in a continent organised by largest population to smallest.
 - All the cities in a continent organised by largest population organised by largest to smallest population.
-- -ALL the cities in a region organised by largest population to smallest.
+- ALL the cities in a region organised by largest population to smallest.
 - All the cities in a country/district organised by largest population to smallest.
 - All the cities in the world organised by largest to smallest population.
 - All the countries in a region largest to smallest population.
