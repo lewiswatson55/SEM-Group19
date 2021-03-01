@@ -13,17 +13,17 @@ public class App
         // Connect to database
         a.connect();
 
-        // Extract country information
-        // ArrayList<Country> country = a.getCountry();
+        //Extract country information
+         ArrayList<Country> country = a.getCountry();
 
         //print country information
-        //a.printCountries(country);
+        a.printCountries(country);
 
         // City information
-        ArrayList<City> city = a.getCity();
+        //ArrayList<City> city = a.getCity();
 
         // print city information
-        a.printCities(city);
+        //a.printCities(city);
 
         // Disconnect from database
         a.disconnect();
@@ -98,7 +98,7 @@ public class App
                 // Create string for SQL statement
                 String strSelect =
                         "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital "
-                                + "FROM country ORDER BY country.population DESC";
+                                + "FROM country WHERE country.Region = 'Eastern Asia' ORDER BY country.population DESC";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
