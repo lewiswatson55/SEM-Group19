@@ -98,7 +98,7 @@ public class App
                 // Create string for SQL statement
                 String strSelect =
                         "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital "
-                                + "FROM country WHERE region = 'Southern Europe' ORDER BY country.population DESC limit 0,5";
+                                + "FROM country WHERE continent = 'Africa' ORDER BY country.population DESC limit 0,5";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
