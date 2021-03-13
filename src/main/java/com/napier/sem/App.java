@@ -199,8 +199,8 @@ public class App
                 String strSelect =
                         "SELECT Name, CountryCode, District, Population\n" +
                                 "FROM city\n" +
-                                "WHERE city.ID IN ( SELECT capital FROM country WHERE Continent = \"Europe\" )\n" +
-                                "ORDER BY Population DESC";
+                                "WHERE city.ID IN ( SELECT capital FROM country WHERE region = \"Caribbean\" )\n" +
+                                "ORDER BY Population DESC\n";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
