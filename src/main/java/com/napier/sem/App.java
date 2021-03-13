@@ -181,6 +181,47 @@ public class App
             return null;
         }
     }
+
+    public ArrayList<CapitalCity> getCapitalCity()
+    {
+        try
+        {
+            {
+                // Create an SQL statement
+                Statement stmt = con.createStatement();
+                // Create string for SQL statement
+                String strSelect =
+                        "SELECT Name, CountryCode, District, Population\n" +
+                                "FROM city\n" +
+                                "WHERE city.ID IN ( SELECT capital FROM country )\n" +
+                                "ORDER BY Population DESC";
+
+                // Execute SQL statement
+                ResultSet rset = stmt.executeQuery(strSelect);
+                // Extract city information
+                ArrayList<CapitalCity> city = new ArrayList<CapitalCity>();
+                while (rset.next())
+                {
+                    CapitalCity ccy = new CapitalCity();
+                    ccy.Name = rset.getString("city.Name");
+                    ccy.CountryCode = rset.getString("city.CountryCode");
+                    ccy.District = rset.getString("city.District");
+                    ccy.Population = rset.getInt("city.Population");
+                    city.add(ccy);
+                }
+                return city;
+
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital city details");
+            return null;
+        }
+    }
+
+
     /**
      * Prints a list of cities.
      */
