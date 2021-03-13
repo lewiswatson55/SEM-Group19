@@ -20,10 +20,16 @@ public class App
         //a.printCountries(country);
 
         // City information
-        ArrayList<City> city = a.getCity();
+        //ArrayList<City> city = a.getCity();
 
         // print city information
-        a.printCities(city);
+        //a.printCities(city);
+
+        // City information
+        ArrayList<CapitalCity> city = a.getCapitalCity();
+
+        // print city information
+        a.printCapitalCities(city);
 
         // Disconnect from database
         a.disconnect();
@@ -193,7 +199,7 @@ public class App
                 String strSelect =
                         "SELECT Name, CountryCode, District, Population\n" +
                                 "FROM city\n" +
-                                "WHERE city.ID IN ( SELECT capital FROM country WHERE region = \"Caribbean\" )\n" +
+                                "WHERE city.ID IN ( SELECT capital FROM country )\n" +
                                 "ORDER BY Population DESC";
 
                 // Execute SQL statement
@@ -236,6 +242,23 @@ public class App
                     String.format("%-40s %-40s %-40s %-40s",
                             cnt.Name, cnt.CountryCode, cnt.District, cnt.Population);
             System.out.println(cnt_string);
+        }
+    }
+
+    /**
+     * Prints a list of Capital Cities.
+     */
+    public void printCapitalCities(ArrayList<CapitalCity> city)
+    {
+        // Print header
+        System.out.println(String.format("%-40s %-40s %-40s %-40s ", "Name", "CountryCode", "District", "Population"));
+        // Loop over all capital cities in the list
+        for (CapitalCity ccy : city)
+        {
+            String ccy_string =
+                    String.format("%-40s %-40s %-40s %-40s",
+                            ccy.Name, ccy.CountryCode, ccy.District, ccy.Population);
+            System.out.println(ccy_string);
         }
     }
 }
