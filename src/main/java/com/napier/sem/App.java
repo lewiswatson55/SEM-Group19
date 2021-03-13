@@ -193,7 +193,7 @@ public class App
                 String strSelect =
                         "SELECT Name, CountryCode, District, Population\n" +
                                 "FROM city\n" +
-                                "WHERE city.ID IN ( SELECT capital FROM country WHERE region = \"Caribbean\" )\n" +
+                                "WHERE city.ID IN ( SELECT capital FROM country )\n" +
                                 "ORDER BY Population DESC";
 
                 // Execute SQL statement
