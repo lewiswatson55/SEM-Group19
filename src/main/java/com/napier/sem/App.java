@@ -160,8 +160,8 @@ public class App
                 Statement stmt = con.createStatement();
                 // Create string for SQL statement
                 String strSelect =
-                        "SELECT city.District, SUM(city.Population) "
-                                + "FROM city WHERE city.District = 'Colorado' ORDER BY city.District DESC;";
+                        "SELECT city.Name, city.CountryCode, city.District, city.Population "
+                                + "FROM city,country WHERE country.Code = city.CountryCode AND country.Region = 'Middle East' ORDER BY city.Population DESC;";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
@@ -170,8 +170,10 @@ public class App
                 while (rset.next())
                 {
                     City cnt = new City();
+                    cnt.Name = rset.getString("city.Name");
+                    cnt.CountryCode = rset.getString("city.CountryCode");
                     cnt.District = rset.getString("city.District");
-                    cnt.Population = rset.getInt("SUM(city.Population)");
+                    cnt.Population = rset.getInt("city.Population");
                     city.add(cnt);
                 }
                 return city;
@@ -185,6 +187,7 @@ public class App
             return null;
         }
     }
+
     /**
      * Prints a list of cities.
      */
