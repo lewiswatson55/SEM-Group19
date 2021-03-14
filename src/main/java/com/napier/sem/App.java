@@ -194,13 +194,13 @@ public class App
     public void printCities(ArrayList<City> city)
     {
         // Print header
-        System.out.println(String.format(" %-40s %-40s ", "District", "Population"));
+        System.out.println(String.format("%-40s %-40s %-40s %-40s ", "Name", "CountryCode", "District", "Population"));
         // Loop over all cities in the list
         for (City cnt : city)
         {
             String cnt_string =
-                    String.format("%-40s %-40s",
-                             cnt.District, cnt.Population);
+                    String.format("%-40s %-40s %-40s %-40s",
+                            cnt.Name, cnt.CountryCode, cnt.District, cnt.Population);
             System.out.println(cnt_string);
         }
     }
