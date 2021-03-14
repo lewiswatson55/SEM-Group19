@@ -20,10 +20,16 @@ public class App
         //a.printCountries(country);
 
         // Extract City information
-        ArrayList<City> city = a.getCity();
+        //ArrayList<City> city = a.getCity();
 
         // print city information
-        a.printCities(city);
+        //a.printCities(city);
+
+        //Extract capital city information
+        ArrayList<CapitalCity> capitalCities = a.getCapitalCity();
+
+        //print capital city information
+        a.printCapitalCities(capitalCities);
 
         // Disconnect from database
         a.disconnect();
@@ -197,4 +203,61 @@ public class App
             System.out.println(cnt_string);
         }
     }
+
+    public ArrayList<CapitalCity> getCapitalCity()
+    {
+        try
+        {
+            {
+                // Create an SQL statement
+                Statement stmt = con.createStatement();
+                // Create string for SQL statement
+                String strSelect =
+                        "SELECT Name, CountryCode, District, Population\n" +
+                                "FROM city\n" +
+                                "WHERE city.ID IN ( SELECT capital FROM country WHERE region = \"Caribbean\" )\n" +
+                                "ORDER BY Population DESC\n";
+
+                // Execute SQL statement
+                ResultSet rset = stmt.executeQuery(strSelect);
+                // Extract city information
+                ArrayList<CapitalCity> city = new ArrayList<CapitalCity>();
+                while (rset.next())
+                {
+                    CapitalCity ccy = new CapitalCity();
+                    ccy.Name = rset.getString("city.Name");
+                    ccy.CountryCode = rset.getString("city.CountryCode");
+                    ccy.District = rset.getString("city.District");
+                    ccy.Population = rset.getInt("city.Population");
+                    city.add(ccy);
+                }
+                return city;
+
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital city details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of Capital Cities.
+     */
+    public void printCapitalCities(ArrayList<CapitalCity> city)
+    {
+        // Print header
+        System.out.println(String.format("%-40s %-40s %-40s %-40s ", "Name", "CountryCode", "District", "Population"));
+        // Loop over all capital cities in the list
+        for (CapitalCity ccy : city)
+        {
+            String ccy_string =
+                    String.format("%-40s %-40s %-40s %-40s",
+                            ccy.Name, ccy.CountryCode, ccy.District, ccy.Population);
+            System.out.println(ccy_string);
+        }
+    }
+}
 }
