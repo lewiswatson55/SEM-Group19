@@ -20,16 +20,16 @@ public class App
         //a.printCountries(country);
 
         // Extract City information
-        //ArrayList<City> city = a.getCity();
+        ArrayList<City> city = a.getCity();
 
         // print city information
-        //a.printCities(city);
+        a.printCities(city);
 
         //Extract capital city information
-        ArrayList<CapitalCity> capitalCities = a.getCapitalCity();
+        //ArrayList<CapitalCity> capitalCities = a.getCapitalCity();
 
         //print capital city information
-        a.printCapitalCities(capitalCities);
+        //a.printCapitalCities(capitalCities);
 
         // Disconnect from database
         a.disconnect();
@@ -160,7 +160,7 @@ public class App
                 Statement stmt = con.createStatement();
                 // Create string for SQL statement
                 String strSelect =
-                        "SELECT city.Name, city.CountryCode, city.District, city.Population "
+                        "SELECT city.District, SUM(city.Population) "
                                 + "FROM city WHERE city.District = 'Colorado' ORDER BY city.District DESC;";
 
                 // Execute SQL statement
@@ -170,10 +170,8 @@ public class App
                 while (rset.next())
                 {
                     City cnt = new City();
-                    cnt.Name = rset.getString("city.Name");
-                    cnt.CountryCode = rset.getString("city.CountryCode");
                     cnt.District = rset.getString("city.District");
-                    cnt.Population = rset.getInt("city.Population");
+                    cnt.Population = rset.getInt("SUM(city.Population)");
                     city.add(cnt);
                 }
                 return city;
@@ -193,13 +191,13 @@ public class App
     public void printCities(ArrayList<City> city)
     {
         // Print header
-        System.out.println(String.format("%-40s %-40s %-40s %-40s ", "Name", "CountryCode", "District", "Population"));
+        System.out.println(String.format(" %-40s %-40s ", "District", "Population"));
         // Loop over all cities in the list
         for (City cnt : city)
         {
             String cnt_string =
-                    String.format("%-40s %-40s %-40s %-40s",
-                            cnt.Name, cnt.CountryCode, cnt.District, cnt.Population);
+                    String.format("%-40s %-40s",
+                             cnt.District, cnt.Population);
             System.out.println(cnt_string);
         }
     }
