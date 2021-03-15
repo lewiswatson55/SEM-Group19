@@ -139,11 +139,20 @@ public class App
      */
     public void printCountries(ArrayList<Country> country)
     {
+        // Check countries is not null
+        if (country == null)
+        {
+            System.out.println("No countries");
+            return;
+        }
+
         // Print header
         System.out.println(String.format("%-40s %-40s %-40s %-40s %-40s %-40s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
         // Loop over all countries in the list
         for (Country cnt : country)
         {
+            if (cnt == null)
+                continue;
             String cnt_string =
                     String.format("%-40s %-40s %-40s %-40s %-40s %-40s",
                             cnt.code, cnt.name, cnt.continent, cnt.region, cnt.population, cnt.capital);
@@ -233,11 +242,21 @@ public class App
      */
     public void printCities(ArrayList<City> city)
     {
+        // Check city is not null
+        if (city == null)
+        {
+            System.out.println("No cities");
+            return;
+        }
+
         // Print header
         System.out.println(String.format("%-40s %-40s %-40s %-40s ", "Name", "CountryCode", "District", "Population"));
         // Loop over all cities in the list
         for (City cnt : city)
         {
+            if (cnt == null)
+                continue;
+
             String cnt_string =
                     String.format("%-40s %-40s %-40s %-40s",
                             cnt.Name, cnt.CountryCode, cnt.District, cnt.Population);
@@ -250,11 +269,19 @@ public class App
      */
     public void printCapitalCities(ArrayList<CapitalCity> city)
     {
+        // Check capital city is not null
+        if (city == null)
+        {
+            System.out.println("No capital cities");
+            return;
+        }
         // Print header
         System.out.println(String.format("%-40s %-40s %-40s %-40s ", "Name", "CountryCode", "District", "Population"));
         // Loop over all capital cities in the list
         for (CapitalCity ccy : city)
         {
+            if (ccy == null)
+                continue;
             String ccy_string =
                     String.format("%-40s %-40s %-40s %-40s",
                             ccy.Name, ccy.CountryCode, ccy.District, ccy.Population);
