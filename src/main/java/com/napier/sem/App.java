@@ -13,23 +13,23 @@ public class App
         // Connect to database
         a.connect();
 
-        //Extract country information
-        //ArrayList<Country> country = a.getCountry();
+        // Extract country information
+        // ArrayList<Country> country = a.getCountry();
 
         //print country information
         //a.printCountries(country);
 
-        // Extract City information
-        ArrayList<City> city = a.getCity();
+        // City information
+        //ArrayList<City> city = a.getCity();
 
         // print city information
-        a.printCities(city);
+        //a.printCities(city);
 
-        //Extract capital city information
-        //ArrayList<CapitalCity> capitalCities = a.getCapitalCity();
+        // City information
+        ArrayList<CapitalCity> city = a.getCapitalCity();
 
-        //print capital city information
-        //a.printCapitalCities(capitalCities);
+        // print city information
+        a.printCapitalCities(city);
 
         // Disconnect from database
         a.disconnect();
@@ -104,7 +104,7 @@ public class App
                 // Create string for SQL statement
                 String strSelect =
                         "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital "
-                                + "FROM country WHERE name = 'Australia' ORDER BY country.population DESC";
+                                + "FROM country ORDER BY country.population DESC";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
@@ -139,11 +139,20 @@ public class App
      */
     public void printCountries(ArrayList<Country> country)
     {
+        // Check countries is not null
+        if (country == null)
+        {
+            System.out.println("No countries");
+            return;
+        }
+
         // Print header
         System.out.println(String.format("%-40s %-40s %-40s %-40s %-40s %-40s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
         // Loop over all countries in the list
         for (Country cnt : country)
         {
+            if (cnt == null)
+                continue;
             String cnt_string =
                     String.format("%-40s %-40s %-40s %-40s %-40s %-40s",
                             cnt.code, cnt.name, cnt.continent, cnt.region, cnt.population, cnt.capital);
@@ -188,23 +197,6 @@ public class App
         }
     }
 
-    /**
-     * Prints a list of cities.
-     */
-    public void printCities(ArrayList<City> city)
-    {
-        // Print header
-        System.out.println(String.format("%-40s %-40s %-40s %-40s ", "Name", "CountryCode", "District", "Population"));
-        // Loop over all cities in the list
-        for (City cnt : city)
-        {
-            String cnt_string =
-                    String.format("%-40s %-40s %-40s %-40s",
-                            cnt.Name, cnt.CountryCode, cnt.District, cnt.Population);
-            System.out.println(cnt_string);
-        }
-    }
-
     public ArrayList<CapitalCity> getCapitalCity()
     {
         try
@@ -244,16 +236,52 @@ public class App
         }
     }
 
+
+    /**
+     * Prints a list of cities.
+     */
+    public void printCities(ArrayList<City> city)
+    {
+        // Check city is not null
+        if (city == null)
+        {
+            System.out.println("No cities");
+            return;
+        }
+
+        // Print header
+        System.out.println(String.format("%-40s %-40s %-40s %-40s ", "Name", "CountryCode", "District", "Population"));
+        // Loop over all cities in the list
+        for (City cnt : city)
+        {
+            if (cnt == null)
+                continue;
+
+            String cnt_string =
+                    String.format("%-40s %-40s %-40s %-40s",
+                            cnt.Name, cnt.CountryCode, cnt.District, cnt.Population);
+            System.out.println(cnt_string);
+        }
+    }
+
     /**
      * Prints a list of Capital Cities.
      */
     public void printCapitalCities(ArrayList<CapitalCity> city)
     {
+        // Check capital city is not null
+        if (city == null)
+        {
+            System.out.println("No capital cities");
+            return;
+        }
         // Print header
         System.out.println(String.format("%-40s %-40s %-40s %-40s ", "Name", "CountryCode", "District", "Population"));
         // Loop over all capital cities in the list
         for (CapitalCity ccy : city)
         {
+            if (ccy == null)
+                continue;
             String ccy_string =
                     String.format("%-40s %-40s %-40s %-40s",
                             ccy.Name, ccy.CountryCode, ccy.District, ccy.Population);
