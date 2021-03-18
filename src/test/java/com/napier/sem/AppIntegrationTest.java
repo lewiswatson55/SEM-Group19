@@ -22,18 +22,21 @@ public class AppIntegrationTest
     @Test
     void testGetCountry()
     {
-
+        ArrayList<Country> cnt = app.getCountry();
+        app.printCountries(cnt);
     }
 
     @Test
     void testGetCity()
     {
-
+        ArrayList<City> cnt = app.getCity();
+        app.printCities(cnt);
     }
 
     @Test
     void testGetCapitalCity()
     {
-
+        ArrayList<CapitalCity> ccy = app.getCapitalCity();
+        app.printCapitalCities(ccy);
     }
 }
