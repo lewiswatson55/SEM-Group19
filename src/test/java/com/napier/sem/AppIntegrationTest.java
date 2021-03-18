@@ -24,4 +24,16 @@ public class AppIntegrationTest
     {
 
     }
+
+    @Test
+    void testGetCity()
+    {
+
+    }
+
+    @Test
+    void testGetCapitalCity()
+    {
+
+    }
 }
