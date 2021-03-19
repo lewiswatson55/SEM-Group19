@@ -24,6 +24,7 @@ public class AppIntegrationTest
     {
         ArrayList<Country> cnt = app.getCountry();
         app.printCountries(cnt);
+        System.out.println("--------------------------");
     }
 
     @Test
@@ -31,6 +32,7 @@ public class AppIntegrationTest
     {
         ArrayList<City> cnt = app.getCity();
         app.printCities(cnt);
+        System.out.println("--------------------------");
     }
 
     @Test
@@ -38,5 +40,6 @@ public class AppIntegrationTest
     {
         ArrayList<CapitalCity> ccy = app.getCapitalCity();
         app.printCapitalCities(ccy);
+        System.out.println("--------------------------");
     }
 }
