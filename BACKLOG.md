@@ -43,7 +43,7 @@ Sprint goal - Use cases/diagrams and zube set up, tasks defined as user stories 
 - Use case diagrams
 
 ## Sprint Three
--Sprint goal - Unit testing and integration testing working on Travis
+Sprint goal - Unit testing and integration testing working on Travis
 
 ## Backlog
 - All the capital cities in a continent. Largest population to smallest.
