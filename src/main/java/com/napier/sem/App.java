@@ -3,6 +3,14 @@ package com.napier.sem;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * The App class is the main entry point into our code.
+ * This is where any queries or data manipulation occurs.
+ *
+ * @author  Kristiyan Tanev, Lee Shaw, Amy Harvey, Lewis Watson
+ * @version 1.0
+ * @since   2021-02-03
+ */
 public class App
 {
     public static void main(String[] args)
@@ -41,13 +49,16 @@ public class App
         // Disconnect from database
         a.disconnect();
     }
+
     /**
      * Connection to MySQL database.
      */
     private Connection con = null;
 
     /**
-     * Connect to the MySQL database.
+     * This is the method used to attempt to connect to the program Database.
+     * Upon failing to connect the program will try again (ten times).
+     * @param location Database IP/Address
      */
     public void connect(String location)
     {
@@ -101,6 +112,12 @@ public class App
         }
     }
 
+    /**
+     * This is the method used to return an array list of Countries.
+     * Dependant on the SQL used in the method.
+     *
+     * @return ArrayList<Country> List of Countries
+     */
     public ArrayList<Country> getCountry()
     {
         try
@@ -140,33 +157,13 @@ public class App
         }
     }
 
+
     /**
-     * Prints a list of countries.
-     * @param country The list of countries to print.
+     * This is the method used to return an array list of Cities.
+     * Dependant on the SQL used in the method.
+     *
+     * @return ArrayList<Country> List of Cities
      */
-    public void printCountries(ArrayList<Country> country)
-    {
-        // Check countries is not null
-        if (country == null)
-        {
-            System.out.println("No countries");
-            return;
-        }
-
-        // Print header
-        System.out.println(String.format("%-40s %-40s %-40s %-40s %-40s %-40s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
-        // Loop over all countries in the list
-        for (Country cnt : country)
-        {
-            if (cnt == null)
-                continue;
-            String cnt_string =
-                    String.format("%-40s %-40s %-40s %-40s %-40s %-40s",
-                            cnt.code, cnt.name, cnt.continent, cnt.region, cnt.population, cnt.capital);
-            System.out.println(cnt_string);
-        }
-    }
-
     public ArrayList<City> getCity()
     {
         try
@@ -204,6 +201,12 @@ public class App
         }
     }
 
+    /**
+     * This is the method used to return an array list of Capital Cities.
+     * Dependant on the SQL used in the method.
+     *
+     * @return ArrayList<Country> List of Capital Cities.
+     */
     public ArrayList<CapitalCity> getCapitalCity()
     {
         try
@@ -243,9 +246,37 @@ public class App
         }
     }
 
+    /**
+     * Prints a list of countries.
+     * @param country Array List of Countries to be printed to system out.
+     */
+    public void printCountries(ArrayList<Country> country)
+    {
+        // Check countries is not null
+        if (country == null)
+        {
+            System.out.println("No countries");
+            return;
+        }
+
+        // Print header
+        System.out.println(String.format("%-40s %-40s %-40s %-40s %-40s %-40s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+        // Loop over all countries in the list
+        for (Country cnt : country)
+        {
+            if (cnt == null)
+                continue;
+            String cnt_string =
+                    String.format("%-40s %-40s %-40s %-40s %-40s %-40s",
+                            cnt.code, cnt.name, cnt.continent, cnt.region, cnt.population, cnt.capital);
+            System.out.println(cnt_string);
+        }
+    }
+
 
     /**
      * Prints a list of cities.
+     * @param city Array List of Cities to be printed to system out.
      */
     public void printCities(ArrayList<City> city)
     {
@@ -273,6 +304,7 @@ public class App
 
     /**
      * Prints a list of Capital Cities.
+     * @param city Array List of Capital Cities to be printed to system out.
      */
     public void printCapitalCities(ArrayList<CapitalCity> city)
     {

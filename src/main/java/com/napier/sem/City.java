@@ -1,7 +1,11 @@
 package com.napier.sem;
 
 /**
- * Represents a City
+ * Class that represents a City.
+ *
+ * @author  Kristiyan Tanev
+ * @version 1.0
+ * @since   2021-02-23
  */
 public class City
 {
