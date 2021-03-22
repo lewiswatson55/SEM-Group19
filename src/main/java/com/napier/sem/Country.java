@@ -1,7 +1,11 @@
 package com.napier.sem;
 
 /**
- * Represents a Country
+ * Class that represents a Country.
+ *
+ * @author  Lee Shaw
+ * @version 1.0
+ * @since   2021-02-17
  */
 public class Country
 {

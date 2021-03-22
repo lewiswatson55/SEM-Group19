@@ -1,7 +1,11 @@
 package com.napier.sem;
 
 /**
- * Represents a CapitalCity
+ * Class that represents a City.
+ *
+ * @author  Lewis Watson
+ * @version 1.0
+ * @since   2021-03-13
  */
 public class CapitalCity
 {
