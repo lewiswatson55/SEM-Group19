@@ -14,10 +14,10 @@ public class App
         a.connect();
 
         // Extract country information
-        // ArrayList<Country> country = a.getCountry();
+        ArrayList<Country> country = a.getCountry();
 
         //print country information
-        //a.printCountries(country);
+        a.printCountries(country);
 
         // City information
         //ArrayList<City> city = a.getCity();
@@ -26,10 +26,10 @@ public class App
         //a.printCities(city);
 
         // City information
-        ArrayList<CapitalCity> city = a.getCapitalCity();
+        //ArrayList<CapitalCity> city = a.getCapitalCity();
 
         // print city information
-        a.printCapitalCities(city);
+        //a.printCapitalCities(city);
 
         // Disconnect from database
         a.disconnect();
@@ -103,8 +103,8 @@ public class App
                 Statement stmt = con.createStatement();
                 // Create string for SQL statement
                 String strSelect =
-                        "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital "
-                                + "FROM country ORDER BY country.population DESC";
+                        "SELECT country.Region, SUM(country.Population)"
+                                + "FROM country WHERE country.Region = 'Caribbean' ORDER BY country.population DESC";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
@@ -113,12 +113,8 @@ public class App
                 while (rset.next())
                 {
                     Country cnt = new Country();
-                    cnt.code = rset.getString("country.code");
-                    cnt.name = rset.getString("country.name");
-                    cnt.continent = rset.getString("country.continent");
                     cnt.region = rset.getString("country.region");
-                    cnt.population = rset.getInt("country.population");
-                    cnt.capital = rset.getString("country.capital");
+                    cnt.population = rset.getInt("SUM(country.Population)");
                     country.add(cnt);
                 }
                 return country;
@@ -147,15 +143,15 @@ public class App
         }
 
         // Print header
-        System.out.println(String.format("%-40s %-40s %-40s %-40s %-40s %-40s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+        System.out.println(String.format("%-40s %-40s", "Region", "Population"));
         // Loop over all countries in the list
         for (Country cnt : country)
         {
             if (cnt == null)
                 continue;
             String cnt_string =
-                    String.format("%-40s %-40s %-40s %-40s %-40s %-40s",
-                            cnt.code, cnt.name, cnt.continent, cnt.region, cnt.population, cnt.capital);
+                    String.format("%-40s %-40s",
+                            cnt.region, cnt.population);
             System.out.println(cnt_string);
         }
     }
