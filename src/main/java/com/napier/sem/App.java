@@ -103,8 +103,8 @@ public class App
                 Statement stmt = con.createStatement();
                 // Create string for SQL statement
                 String strSelect =
-                        "SELECT country.Region, SUM(country.Population)"
-                                + "FROM country WHERE country.Region = 'Caribbean' ORDER BY country.population DESC";
+                        "SELECT country.Continent, SUM(country.Population)"
+                                + "FROM country WHERE country.Continent = 'South America' ORDER BY country.population DESC";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
@@ -113,7 +113,7 @@ public class App
                 while (rset.next())
                 {
                     Country cnt = new Country();
-                    cnt.region = rset.getString("country.region");
+                    cnt.continent = rset.getString("country.Continent");
                     cnt.population = rset.getInt("SUM(country.Population)");
                     country.add(cnt);
                 }
@@ -143,7 +143,7 @@ public class App
         }
 
         // Print header
-        System.out.println(String.format("%-40s %-40s", "Region", "Population"));
+        System.out.println(String.format("%-40s %-40s", "Continent", "Population"));
         // Loop over all countries in the list
         for (Country cnt : country)
         {
@@ -151,7 +151,7 @@ public class App
                 continue;
             String cnt_string =
                     String.format("%-40s %-40s",
-                            cnt.region, cnt.population);
+                            cnt.continent, cnt.population);
             System.out.println(cnt_string);
         }
     }
