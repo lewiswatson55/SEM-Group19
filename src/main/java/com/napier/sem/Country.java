@@ -27,7 +27,7 @@ public class Country
     /**
      * Population
      */
-    public int population;
+    public long population;
 
     /**
      * Capital
