@@ -103,8 +103,8 @@ public class App
                 Statement stmt = con.createStatement();
                 // Create string for SQL statement
                 String strSelect =
-                        "SELECT SUM(country.Population)"
-                                + "FROM country ";
+                        "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital "
+                                + "FROM country ORDER BY country.population DESC";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
@@ -113,7 +113,12 @@ public class App
                 while (rset.next())
                 {
                     Country cnt = new Country();
-                    cnt.population = rset.getLong("SUM(country.Population)");
+                    cnt.code = rset.getString("country.code");
+                    cnt.name = rset.getString("country.name");
+                    cnt.continent = rset.getString("country.continent");
+                    cnt.region = rset.getString("country.region");
+                    cnt.population = rset.getInt("country.population");
+                    cnt.capital = rset.getString("country.capital");
                     country.add(cnt);
                 }
                 return country;
@@ -132,6 +137,7 @@ public class App
      * Prints a list of countries.
      * @param country The list of countries to print.
      */
+
     public void printCountries(ArrayList<Country> country)
     {
         // Check countries is not null
@@ -142,18 +148,21 @@ public class App
         }
 
         // Print header
-        System.out.println(String.format("%-40s", "Population"));
+        System.out.println(String.format("%-40s %-40s %-40s %-40s %-40s %-40s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
         // Loop over all countries in the list
         for (Country cnt : country)
         {
             if (cnt == null)
                 continue;
             String cnt_string =
-                    String.format("%-40s",
-                            cnt.population);
+                    String.format("%-40s %-40s %-40s %-40s %-40s %-40s",
+                            cnt.code, cnt.name, cnt.continent, cnt.region, cnt.population, cnt.capital);
             System.out.println(cnt_string);
         }
     }
+
+
+
 
     public ArrayList<City> getCity()
     {
