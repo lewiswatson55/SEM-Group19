@@ -62,7 +62,7 @@ public class App
             try
             {
                 // Wait a bit for db to start
-                Thread.sleep(30000);
+                Thread.sleep(0);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
@@ -212,7 +212,7 @@ public class App
                 String strSelect =
                         "SELECT Name, CountryCode, District, Population\n" +
                                 "FROM city\n" +
-                                "WHERE city.ID IN ( SELECT capital FROM country WHERE region = 'Central Africa')\n" +
+                                "WHERE city.ID IN ( SELECT capital FROM country WHERE continent = 'Asia')\n" +
                                 "ORDER BY Population DESC\n LIMIT 0,5;";
 
                 // Execute SQL statement
