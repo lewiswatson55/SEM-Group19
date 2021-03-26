@@ -212,7 +212,7 @@ public class App
                 String strSelect =
                         "SELECT Name, CountryCode, District, Population\n" +
                                 "FROM city\n" +
-                                "WHERE city.ID IN ( SELECT capital FROM country )\n" +
+                                "WHERE city.ID IN ( SELECT capital FROM country WHERE region = 'Central Africa')\n" +
                                 "ORDER BY Population DESC\n LIMIT 0,5;";
 
                 // Execute SQL statement
