@@ -20,16 +20,16 @@ public class App
         //a.printCountries(country);
 
         // City information
-        ArrayList<City> city = a.getCity();
+        //ArrayList<City> city = a.getCity();
 
         // print city information
-        a.printCities(city);
+        //a.printCities(city);
 
         // City information
-        //ArrayList<CapitalCity> city = a.getCapitalCity();
+        ArrayList<CapitalCity> city = a.getCapitalCity();
 
         // print city information
-        //a.printCapitalCities(city);
+        a.printCapitalCities(city);
 
         // Disconnect from database
         a.disconnect();
@@ -212,8 +212,8 @@ public class App
                 String strSelect =
                         "SELECT Name, CountryCode, District, Population\n" +
                                 "FROM city\n" +
-                                "WHERE city.ID IN ( SELECT capital FROM country WHERE region = \"Caribbean\" )\n" +
-                                "ORDER BY Population DESC\n";
+                                "WHERE city.ID IN ( SELECT capital FROM country )\n" +
+                                "ORDER BY Population DESC\n LIMIT 0,5;";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
