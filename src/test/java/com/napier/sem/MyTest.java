@@ -53,37 +53,35 @@ public class MyTest {
     }
 
     @Test
-    void printCitiesNull()
+    void printLanguageNull()
     {
-        app.printCities(null);
+        app.printLanguage(null);
     }
 
     @Test
-    void printCitiesEmpty()
+    void printLanguageEmpty()
     {
-        ArrayList<City> cities = new ArrayList<City>();
-        app.printCities(cities);
+        ArrayList<Language> language = new ArrayList<Language>();
+        app.printLanguage(language);
     }
 
     @Test
-    void printCitiesContainsNull()
+    void printLanguageContainsNull()
     {
-        ArrayList<City> cities = new ArrayList<City>();
-        cities.add(null);
-        app.printCities(cities);
+        ArrayList<Language> language = new ArrayList<Language>();
+        language.add(null);
+        app.printLanguage(language);
     }
 
     @Test
     void printCities()
     {
-        ArrayList<City> cities = new ArrayList<City>();
-        City cnt = new City();
-        cnt.Name = "Los Angeles";
-        cnt.CountryCode = "USA";
-        cnt.District = "California";
-        cnt.Population = 8389200;
-        cities.add(cnt);
-        app.printCities(cities);
+        ArrayList<Language> language = new ArrayList<Language>();
+        Language cnt = new Language();
+        cnt.language = "English";
+        cnt.percentage = 50;
+        language.add(cnt);
+        app.printLanguage(language);
     }
 
     @Test

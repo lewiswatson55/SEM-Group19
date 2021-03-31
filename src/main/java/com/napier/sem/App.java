@@ -26,10 +26,16 @@ public class App
         //a.printCities(city);
 
         // City information
-        ArrayList<CapitalCity> city = a.getCapitalCity();
+        //ArrayList<CapitalCity> city = a.getCapitalCity();
 
         // print city information
-        a.printCapitalCities(city);
+        //a.printCapitalCities(city);
+
+        // Language information
+        ArrayList<Language> language = a.getLanguage();
+
+        //print language information
+        a.printLanguage(language);
 
         // Disconnect from database
         a.disconnect();
@@ -164,7 +170,7 @@ public class App
 
 
 
-    public ArrayList<City> getCity()
+    public ArrayList<Language> getLanguage()
     {
         try
         {
@@ -173,30 +179,29 @@ public class App
                 Statement stmt = con.createStatement();
                 // Create string for SQL statement
                 String strSelect =
-                        "SELECT city.Name, city.CountryCode, city.District, city.Population "
-                                + "FROM city WHERE city.District = 'Buenos Aires' ORDER BY city.Population DESC LIMIT 0,5;";
+                        "SELECT countrylanguage.Language, countrylanguage.Percentage, country.Name "
+                                + "FROM countrylanguage, country WHERE countrylanguage.Language = 'English' ORDER BY countrylanguage.Percentage DESC;";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
                 // Extract employee information
-                ArrayList<City> city = new ArrayList<City>();
+                ArrayList<Language> language = new ArrayList<Language>();
                 while (rset.next())
                 {
-                    City cnt = new City();
-                    cnt.Name = rset.getString("city.Name");
-                    cnt.CountryCode = rset.getString("city.CountryCode");
-                    cnt.District = rset.getString("city.District");
-                    cnt.Population = rset.getInt("city.Population");
-                    city.add(cnt);
+                    Language cnt = new Language();
+                    cnt.Name = rset.getString("country.Name");
+                    cnt.language = rset.getString("countryLanguage.Language");
+                    cnt.percentage = rset.getInt("countryLanguage.percentage");
+                    language.add(cnt);
                 }
-                return city;
+                return language;
 
             }
         }
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get city details");
+            System.out.println("Failed to get language details");
             return null;
         }
     }
@@ -242,28 +247,28 @@ public class App
 
 
     /**
-     * Prints a list of cities.
+     * Prints languages
      */
-    public void printCities(ArrayList<City> city)
+    public void printLanguage(ArrayList<Language> language)
     {
-        // Check city is not null
-        if (city == null)
+        // Check language is not null
+        if (language == null)
         {
-            System.out.println("No cities");
+            System.out.println("No languages");
             return;
         }
 
         // Print header
-        System.out.println(String.format("%-40s %-40s %-40s %-40s ", "Name", "CountryCode", "District", "Population"));
-        // Loop over all cities in the list
-        for (City cnt : city)
+        System.out.println(String.format("%-40s %-40s %-40s", "Name", "language", "Percentage"));
+        // Loop over all languages in the list
+        for (Language cnt : language)
         {
             if (cnt == null)
                 continue;
 
             String cnt_string =
-                    String.format("%-40s %-40s %-40s %-40s",
-                            cnt.Name, cnt.CountryCode, cnt.District, cnt.Population);
+                    String.format("%-40s %-40s %-40s",
+                          cnt.Name, cnt.language, cnt.percentage);
             System.out.println(cnt_string);
         }
     }
