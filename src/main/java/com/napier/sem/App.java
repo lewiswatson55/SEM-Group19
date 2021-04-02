@@ -192,9 +192,9 @@ public class App
                 {
                     Language cnt = new Language();
                     cnt.Name = rset.getString("country.Name");
-                    cnt.Population = rset.getString("country.Population");
+                    cnt.Population = rset.getInt("country.Population");
                     cnt.language = rset.getString("countryLanguage.Language");
-                    cnt.percentage = rset.getInt("countryLanguage.percentage");
+                    cnt.percentage = rset.getFloat("countryLanguage.percentage");
                     language.add(cnt);
                 }
                 return language;
