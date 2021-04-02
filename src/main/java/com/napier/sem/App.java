@@ -179,8 +179,10 @@ public class App
                 Statement stmt = con.createStatement();
                 // Create string for SQL statement
                 String strSelect =
-                        "SELECT country.Name, countrylanguage.Language, countrylanguage.Percentage "
-                                + "FROM country, countrylanguage WHERE country.Code = countrylanguage.CountryCode ORDER BY countrylanguage.Percentage DESC;";
+                        "SELECT country.Name, country.Population, countrylanguage.Language, countrylanguage.Percentage "
+                                + "FROM country, countrylanguage WHERE country.Code = countrylanguage.CountryCode " +
+                                "AND countrylanguage.Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic') " +
+                                "ORDER BY country.Population DESC;";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
@@ -190,6 +192,7 @@ public class App
                 {
                     Language cnt = new Language();
                     cnt.Name = rset.getString("country.Name");
+                    cnt.Population = rset.getString("country.Population");
                     cnt.language = rset.getString("countryLanguage.Language");
                     cnt.percentage = rset.getInt("countryLanguage.percentage");
                     language.add(cnt);
@@ -259,7 +262,7 @@ public class App
         }
 
         // Print header
-        System.out.println(String.format("%-40s %-40s %-40s", "Name", "language", "Percentage"));
+        System.out.println(String.format("%-40s %-40s %-40s %-40s", "Name", "Population", "language", "Percentage"));
         // Loop over all languages in the list
         for (Language cnt : language)
         {
@@ -267,8 +270,8 @@ public class App
                 continue;
 
             String cnt_string =
-                    String.format("%-40s %-40s %-40s",
-                          cnt.Name, cnt.language, cnt.percentage);
+                    String.format("%-40s %-40s %-40s %-40s",
+                          cnt.Name, cnt.Population, cnt.language, cnt.percentage);
             System.out.println(cnt_string);
         }
     }

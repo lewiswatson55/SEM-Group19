@@ -13,6 +13,11 @@ public class Language
     public String Name;
 
     /**
+     * Country Population
+     */
+    public String Population;
+
+    /**
      * Language
      */
     public String language;
