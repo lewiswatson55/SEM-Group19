@@ -179,8 +179,8 @@ public class App
                 Statement stmt = con.createStatement();
                 // Create string for SQL statement
                 String strSelect =
-                        "SELECT countrylanguage.Language, countrylanguage.Percentage, country.Name "
-                                + "FROM countrylanguage, country WHERE countrylanguage.Language = 'English' ORDER BY countrylanguage.Percentage DESC;";
+                        "SELECT country.Name, countrylanguage.Language, countrylanguage.Percentage "
+                                + "FROM country, countrylanguage WHERE country.Code = countrylanguage.CountryCode ORDER BY countrylanguage.Percentage DESC;";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
