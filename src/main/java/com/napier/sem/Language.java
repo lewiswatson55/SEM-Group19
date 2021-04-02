@@ -15,7 +15,7 @@ public class Language
     /**
      * Country Population
      */
-    public Integer Population;
+    public long Population;
 
     /**
      * Language
