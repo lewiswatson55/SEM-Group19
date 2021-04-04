@@ -7,10 +7,6 @@ import java.text.DecimalFormat;
  */
 public class Language
 {
-    /**
-     * Country Name
-     */
-    public String Name;
 
     /**
      * Country Population

@@ -179,10 +179,11 @@ public class App
                 Statement stmt = con.createStatement();
                 // Create string for SQL statement
                 String strSelect =
-                        "SELECT country.Population, countrylanguage.Language, countrylanguage.Percentage "
-                                + "FROM country INNER JOIN countrylanguage ON country.Code = countrylanguage.CountryCode " +
-                                "WHERE (countrylanguage.CountryCode, countrylanguage.Percentage) IN (SELECT CountryCode, MAX(Percentage) FROM countrylanguage GROUP BY CountryCode) " +
-                                "GROUP BY country.Population, countrylanguage.Language, countrylanguage.Percentage;";
+                        "SELECT countrylanguage.Language, SUM(country.Population * countrylanguage.Percentage / 100) AS s, SUM(country.Population * countrylanguage.Percentage) AS p " +
+                                " FROM country " +
+                                " INNER JOIN countrylanguage ON countrylanguage.CountryCode = country.Code " +
+                                " WHERE countrylanguage.Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')" +
+                                " GROUP BY countrylanguage.Language;";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
@@ -191,9 +192,9 @@ public class App
                 while (rset.next())
                 {
                     Language cnt = new Language();
-                    cnt.Population = rset.getLong("country.Population");
                     cnt.language = rset.getString("countryLanguage.Language");
-                    cnt.percentage = rset.getFloat("countryLanguage.percentage");
+                    cnt.Population = rset.getLong("s");
+                    cnt.percentage = rset.getFloat("p");
                     language.add(cnt);
                 }
                 return language;
@@ -261,7 +262,7 @@ public class App
         }
 
         // Print header
-        System.out.println(String.format("%-40s %-40s %-40s", "Population", "language", "Percentage"));
+        System.out.println(String.format("%-40s %-40s %-40s", "language", "Population", "Percentage"));
         // Loop over all languages in the list
         for (Language cnt : language)
         {
@@ -270,7 +271,7 @@ public class App
 
             String cnt_string =
                     String.format("%-40s %-40s %-40s",
-                            cnt.Population, cnt.language, cnt.percentage);
+                            cnt.language, cnt.Population, cnt.percentage);
             System.out.println(cnt_string);
         }
     }
