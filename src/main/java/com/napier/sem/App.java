@@ -179,7 +179,7 @@ public class App
                 Statement stmt = con.createStatement();
                 // Create string for SQL statement
                 String strSelect =
-                        "SELECT countrylanguage.Language, SUM(country.Population * countrylanguage.Percentage / 100) AS s, SUM(country.Population * countrylanguage.Percentage) AS p " +
+                        "SELECT countrylanguage.Language, SUM(country.Population * countrylanguage.Percentage / 100) AS s, MAX(countrylanguage.Percentage) AS p " +
                                 " FROM country " +
                                 " INNER JOIN countrylanguage ON countrylanguage.CountryCode = country.Code " +
                                 " WHERE countrylanguage.Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')" +
