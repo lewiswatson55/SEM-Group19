@@ -179,13 +179,14 @@ public class App
                 Statement stmt = con.createStatement();
                 // Create string for SQL statement
                 String strSelect =
-                        "SELECT countrylanguage.Language, SUM(country.Population * countrylanguage.Percentage / 100) AS s, " +
-                                "SUM(country.Population * countrylanguage.Percentage / 100) / (SELECT sum(Population)FROM country) * 100 AS percentage_speakers " +
+                        "SELECT countrylanguage.Language, SUM(country.Population * countrylanguage.Percentage / 100) AS speakers, " +
+                                "SUM(country.Population * countrylanguage.Percentage / 100) / " +
+                                "(SELECT sum(Population)FROM country) * 100 AS percentage_speakers " +
                                 " FROM country " +
                                 " JOIN countrylanguage ON countrylanguage.CountryCode = country.Code " +
                                 " WHERE countrylanguage.Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')" +
                                 " GROUP BY countrylanguage.Language" +
-                                " ORDER BY s DESC;";
+                                " ORDER BY speakers DESC;";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
@@ -195,7 +196,7 @@ public class App
                 {
                     Language cnt = new Language();
                     cnt.language = rset.getString("countryLanguage.Language");
-                    cnt.Population = rset.getLong("s");
+                    cnt.Population = rset.getLong("speakers");
                     cnt.percentage = rset.getFloat("percentage_speakers");
                     language.add(cnt);
                 }
