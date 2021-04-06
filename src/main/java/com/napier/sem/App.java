@@ -180,11 +180,11 @@ public class App
                 // Create string for SQL statement
                 String strSelect =
                         "SELECT countrylanguage.Language, SUM(country.Population * countrylanguage.Percentage / 100) AS s, " +
-                                " MAX(country.Population * 100 / 7500000000) AS p " +
+                                "SUM(country.Population * countrylanguage.Percentage / 100) / (SELECT sum(Population)FROM country) * 100 AS percentage_speakers " +
                                 " FROM country " +
-                                " INNER JOIN countrylanguage ON countrylanguage.CountryCode = country.Code " +
+                                " JOIN countrylanguage ON countrylanguage.CountryCode = country.Code " +
                                 " WHERE countrylanguage.Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')" +
-                                " GROUP BY countrylanguage.Language " +
+                                " GROUP BY countrylanguage.Language" +
                                 " ORDER BY s DESC;";
 
                 // Execute SQL statement
@@ -196,7 +196,7 @@ public class App
                     Language cnt = new Language();
                     cnt.language = rset.getString("countryLanguage.Language");
                     cnt.Population = rset.getLong("s");
-                    cnt.percentage = rset.getFloat("p");
+                    cnt.percentage = rset.getFloat("percentage_speakers");
                     language.add(cnt);
                 }
                 return language;
