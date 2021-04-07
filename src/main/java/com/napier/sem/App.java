@@ -32,7 +32,7 @@ public class App
         //a.printCapitalCities(city);
 
         // Population in/out cities
-        ArrayList<ReportRecord> Report = a.populationCityInOut(1);
+        ArrayList<ReportRecord> Report = a.populationCityInOut(2);
 
         //Print Report
         a.printReport(Report);
