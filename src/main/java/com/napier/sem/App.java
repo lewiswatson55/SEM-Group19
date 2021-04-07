@@ -360,7 +360,7 @@ public class App
                     ReportRecord record = new ReportRecord();
                     record.setName(rset.getString("Name"));
                     record.setPopulationInCity(rset.getLong("populationInCities"));
-                    record.setPopulationInCity(rset.getLong("populationNotCities"));
+                    record.setPopulationOutCity(rset.getLong("populationNotCities"));
                     Report.add(record);
                 }
                 return Report;
