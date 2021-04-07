@@ -393,7 +393,7 @@ public class App
             if (record == null)
                 continue;
             String record_string =
-                    String.format("%-40s %-40s %-40s %-40s",
+                    String.format("%-40s %-40s %-40s",
                             record.getName(), record.getPopulationInCity(), record.getPopulationOutCity());
             System.out.println(record_string);
         }
