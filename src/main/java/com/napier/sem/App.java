@@ -41,10 +41,16 @@ public class App
         //a.printCities(city);
 
         // City information
-        ArrayList<CapitalCity> city = a.getCapitalCity();
+        //ArrayList<CapitalCity> city = a.getCapitalCity();
 
         // print city information
-        a.printCapitalCities(city);
+        //a.printCapitalCities(city);
+
+        // Population in/out cities
+        ArrayList<ReportRecord> Report = a.populationCityInOut(1);
+
+        //Print Report
+        a.printReport(Report);
 
         // Disconnect from database
         a.disconnect();
@@ -327,4 +333,105 @@ public class App
             System.out.println(ccy_string);
         }
     }
+
+    /**
+     * Returns an ArrayList as a report for
+     * @param reportType Report Type, 0: Countries, 1: Regions, 2: Continent
+     *
+     */
+    public ArrayList<ReportRecord> populationCityInOut(int reportType) {
+
+        String chosenQuery;
+
+        // Work out which query is to be run
+        if (reportType==0) {
+            chosenQuery = "SELECT populationInCities, populationNotCities, Name\n" +
+                    "FROM (\n" +
+                    "SELECT country.Population - SUM(city.population) as populationNotCities, city.CountryCode, SUM(city.Population) as populationInCities, country.Name as Name\n" +
+                    "FROM city\n" +
+                    "JOIN country ON city.CountryCode=country.Code\n" +
+                    "GROUP BY city.CountryCode\n" +
+                    "\t) as country_table";
+        }
+        else if (reportType==1)
+        {
+            chosenQuery = "SELECT SUM(populationInCities_Country) as populationInCities, SUM(populationNotCities_Country) as populationNotCities, Name\n" +
+                    "FROM (\n" +
+                    "SELECT country.Population - SUM(city.population) as populationNotCities_Country, city.CountryCode, SUM(city.Population) as populationInCities_Country, country.region as Name\n" +
+                    "FROM city\n" +
+                    "JOIN country ON city.CountryCode=country.Code\n" +
+                    "GROUP BY city.CountryCode\n" +
+                    ") as country_table\n" +
+                    "GROUP BY Name";
+        }
+        else if (reportType==2)
+        {
+            chosenQuery = "SELECT SUM(populationInCities_Country) as populationInCities, SUM(populationNotCities_Country) as populationNotCities, Name\n" +
+                    "FROM (\n" +
+                    "SELECT country.Population - SUM(city.population) as populationNotCities_Country, city.CountryCode, SUM(city.Population) as populationInCities_Country, country.continent as Name\n" +
+                    "FROM city\n" +
+                    "JOIN country ON city.CountryCode=country.Code\n" +
+                    "GROUP BY city.CountryCode\n" +
+                    ") as country_table\n" +
+                    "GROUP BY Name";
+        } else {
+            System.out.println("Invalid Population in/out Cities Report Type");
+            return null;
+        }
+
+        // Run Query Against DB
+        try {
+            {
+                // Create an SQL statement
+                Statement stmt = con.createStatement();
+                // Create string for SQL statement
+                String strSelect = chosenQuery;
+
+                // Execute SQL statement
+                ResultSet rset = stmt.executeQuery(strSelect);
+                // Extract city information
+                ArrayList<ReportRecord> Report = new ArrayList<ReportRecord>();
+                while (rset.next()) {
+                    ReportRecord record = new ReportRecord();
+                    record.setName(rset.getString("Name"));
+                    record.setPopulationInCity(rset.getLong("populationInCities"));
+                    record.setPopulationInCity(rset.getLong("populationOutCities"));
+                    Report.add(record);
+                }
+                return Report;
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to generate report...");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of Capital Cities.
+     * @param Report Array List (Report) of Records from )
+     */
+    public void printReport(ArrayList<ReportRecord> Report)
+    {
+        // Check report is not null
+        if (Report == null)
+        {
+            System.out.println("Report is null.");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-40s %-40s %-40s ", "Name", "Population in City", "Population outwith City"));
+        // Loop over all records in the report
+        for (ReportRecord record : Report)
+        {
+            if (record == null)
+                continue;
+            String record_string =
+                    String.format("%-40s %-40s %-40s %-40s",
+                            record.getName(), record.getPopulationInCity(), record.getPopulationOutCity());
+            System.out.println(record_string);
+        }
+    }
+
 }
