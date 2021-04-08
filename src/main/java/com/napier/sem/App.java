@@ -327,4 +327,72 @@ public class App
             System.out.println(ccy_string);
         }
     }
+
+    public ArrayList<Language> getLanguage()
+    {
+        try
+        {
+            {
+                // Create an SQL statement
+                Statement stmt = con.createStatement();
+                // Create string for SQL statement
+                String strSelect =
+                        "SELECT countrylanguage.Language, SUM(country.Population * countrylanguage.Percentage / 100) AS speakers, " +
+                                "SUM(country.Population * countrylanguage.Percentage / 100) / " +
+                                "(SELECT sum(Population)FROM country) * 100 AS percentage_speakers " +
+                                " FROM country " +
+                                " JOIN countrylanguage ON countrylanguage.CountryCode = country.Code " +
+                                " WHERE countrylanguage.Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')" +
+                                " GROUP BY countrylanguage.Language" +
+                                " ORDER BY speakers DESC;";
+
+                // Execute SQL statement
+                ResultSet rset = stmt.executeQuery(strSelect);
+                // Extract employee information
+                ArrayList<Language> language = new ArrayList<Language>();
+                while (rset.next())
+                {
+                    Language cnt = new Language();
+                    cnt.language = rset.getString("countryLanguage.Language");
+                    cnt.Population = rset.getLong("speakers");
+                    cnt.percentage = rset.getFloat("percentage_speakers");
+                    language.add(cnt);
+                }
+                return language;
+
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get language details");
+            return null;
+        }
+    }
+
+
+    public void printLanguage(ArrayList<Language> language)
+    {
+        // Check language is not null
+        if (language == null)
+        {
+            System.out.println("No languages");
+            return;
+        }
+
+        // Print header
+        System.out.println(String.format("%-40s %-40s %-40s", "language", "Population", "Percentage"));
+        // Loop over all languages in the list
+        for (Language cnt : language)
+        {
+            if (cnt == null)
+                continue;
+
+            String cnt_string =
+                    String.format("%-40s %-40s %-40s",
+                            cnt.language, cnt.Population, cnt.percentage);
+            System.out.println(cnt_string);
+        }
+    }
+
 }
