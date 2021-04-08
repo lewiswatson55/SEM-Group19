@@ -30,8 +30,8 @@ public class AppIntegrationTest
     @Test
     void testGetCity()
     {
-        ArrayList<City> cnt = app.getCity();
-        app.printCities(cnt);
+        ArrayList<City> cnt = app.get();
+        app.printC(cnt);
         System.out.println("--------------------------");
     }
 
