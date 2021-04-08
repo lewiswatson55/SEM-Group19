@@ -11,7 +11,7 @@ public class App
         App a = new App();
 
         // Connect to database
-        a.connect("localhost:3306");
+        a.connect("localhost:33060");
 
         // Extract country information
         //ArrayList<Country> country = a.getCountry();
@@ -26,16 +26,16 @@ public class App
         //a.printCities(city);
 
         // City information
-        //ArrayList<CapitalCity> city = a.getCapitalCity();
+        ArrayList<CapitalCity> city = a.getCapitalCity();
 
         // print city information
-        //a.printCapitalCities(city);
+        a.printCapitalCities(city);
 
         // Language information
-        ArrayList<Language> language = a.getLanguage();
+        //ArrayList<Language> language = a.getLanguage();
 
         //print language information
-        a.printLanguage(language);
+        //a.printLanguage(language);
 
         // Disconnect from database
         a.disconnect();
@@ -301,6 +301,77 @@ public class App
                     String.format("%-40s %-40s %-40s %-40s",
                             ccy.Name, ccy.CountryCode, ccy.District, ccy.Population);
             System.out.println(ccy_string);
+        }
+    }
+
+    /**
+     * This is the method used to return an array list of Cities.
+     * Dependant on the SQL used in the method.
+     *
+     * @return ArrayList<Country> List of Cities
+     */
+    public ArrayList<City> getCity()
+    {
+        try
+        {
+            {
+                // Create an SQL statement
+                Statement stmt = con.createStatement();
+                // Create string for SQL statement
+                String strSelect =
+                        "SELECT city.Name, city.CountryCode, city.District, city.Population "
+                                + "FROM city,country WHERE country.Code = city.CountryCode AND country.Region = 'Middle East' ORDER BY city.Population DESC;";
+
+                // Execute SQL statement
+                ResultSet rset = stmt.executeQuery(strSelect);
+                // Extract employee information
+                ArrayList<City> city = new ArrayList<City>();
+                while (rset.next())
+                {
+                    City cnt = new City();
+                    cnt.Name = rset.getString("city.Name");
+                    cnt.CountryCode = rset.getString("city.CountryCode");
+                    cnt.District = rset.getString("city.District");
+                    cnt.Population = rset.getInt("city.Population");
+                    city.add(cnt);
+                }
+                return city;
+
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of cities.
+     * @param city Array List of Cities to be printed to system out.
+     */
+    public void printCities(ArrayList<City> city)
+    {
+        // Check city is not null
+        if (city == null)
+        {
+            System.out.println("No cities");
+            return;
+        }
+
+        // Print header
+        System.out.println(String.format("%-40s %-40s %-40s %-40s ", "Name", "CountryCode", "District", "Population"));
+        // Loop over all cities in the list
+        for (City cnt : city)
+        {
+            if (cnt == null)
+                continue;
+
+            String cnt_string =
+                    String.format("%-40s %-40s %-40s %-40s",
+                            cnt.Name, cnt.CountryCode, cnt.District, cnt.Population);
+            System.out.println(cnt_string);
         }
     }
 }
