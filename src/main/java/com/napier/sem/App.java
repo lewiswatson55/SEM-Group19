@@ -41,10 +41,10 @@ public class App
         //a.printCities(city);
 
         // City information
-        ArrayList<CapitalCity> city = a.getCapitalCity();
+        //ArrayList<CapitalCity> city = a.getCapitalCity();
 
         // print city information
-        a.printCapitalCities(city);
+        //a.printCapitalCities(city);
 
         // Disconnect from database
         a.disconnect();
@@ -369,7 +369,6 @@ public class App
             return null;
         }
     }
-
 
     public void printLanguage(ArrayList<Language> language)
     {
