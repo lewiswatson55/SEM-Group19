@@ -46,6 +46,12 @@ public class App
         // print city information
         //a.printCapitalCities(city);
 
+        // Language information
+        ArrayList<Language> language = a.getLanguage();
+
+        //print language information
+        a.printLanguage(language);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -80,7 +86,7 @@ public class App
             try
             {
                 // Wait a bit for db to start
-                Thread.sleep(0);
+                Thread.sleep(30000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");

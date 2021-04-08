@@ -86,4 +86,36 @@ public class MyTest {
         capitalCities.add(ccy);
         app.printCapitalCities(capitalCities);
     }
+
+    @Test
+    void printLanguageNull()
+    {
+        app.printLanguage(null);
+    }
+
+    @Test
+    void printLanguageEmpty()
+    {
+        ArrayList<Language> language = new ArrayList<Language>();
+        app.printLanguage(language);
+    }
+
+    @Test
+    void printLanguageContainsNull()
+    {
+        ArrayList<Language> language = new ArrayList<Language>();
+        language.add(null);
+        app.printLanguage(language);
+    }
+
+    @Test
+    void printLanguages()
+    {
+        ArrayList<Language> language = new ArrayList<Language>();
+        Language cnt = new Language();
+        cnt.language = "English";
+        cnt.percentage = 50;
+        language.add(cnt);
+        app.printLanguage(language);
+    }
 }
