@@ -56,3 +56,27 @@ Sprint goal - Unit testing and integration testing working on Travis
 - The population of a certain district.
 - The population of a city.
 - The population of a country. 
+
+## Sprint Four
+Sprint Goal - Completing all remaining SQL issues, setting up a bug tracking system and setting up deployment
+
+## Backlog
+- The population of people, people living in cities and people not living in cities in each country
+- The population of people, people living in cities and people not living in cities in each region 
+- The population of people, people living in cities and people not living in cities in each continent
+- The top N populated capital cities in a region where N is provided by the user
+- The top N populated capital cities in a continent where N is provided by the user
+- The top N populated capital cities in the world where N is provided by the user
+- The top N populated cities in a district where N is provided by the user
+- The top N populated cities in a country where N is provided by the user
+- The top N populated cities in a region where N is provided by the user
+- The top N populated cities in a continent where N is provided by the user
+- The top N populated cities in the world where N is provided by the user
+- Languages of the world greatest to smallest
+- Deployment set up 
+- Bug report system set up 
+- Code quality improved 
+- More unit testing 
+
+
+
