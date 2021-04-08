@@ -3,6 +3,14 @@ package com.napier.sem;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * The App class is the main entry point into our code.
+ * This is where any queries or data manipulation occurs.
+ *
+ * @author  Kristiyan Tanev, Lee Shaw, Amy Harvey, Lewis Watson
+ * @version 1.0
+ * @since   2021-02-03
+ */
 public class App
 {
     public static void main(String[] args)
@@ -11,10 +19,17 @@ public class App
         App a = new App();
 
         // Connect to database
-        a.connect("localhost:33060");
+        if (args.length < 1)
+        {
+            a.connect("localhost:3306");
+        }
+        else
+        {
+            a.connect(args[0]);
+        }
 
         // Extract country information
-        //ArrayList<Country> country = a.getCountry();
+        // ArrayList<Country> country = a.getCountry();
 
         //print country information
         //a.printCountries(country);
@@ -31,22 +46,19 @@ public class App
         // print city information
         a.printCapitalCities(city);
 
-        // Language information
-        //ArrayList<Language> language = a.getLanguage();
-
-        //print language information
-        //a.printLanguage(language);
-
         // Disconnect from database
         a.disconnect();
     }
+
     /**
      * Connection to MySQL database.
      */
     private Connection con = null;
 
     /**
-     * Connect to the MySQL database.
+     * This is the method used to attempt to connect to the program Database.
+     * Upon failing to connect the program will try again (ten times).
+     * @param location Database IP/Address
      */
     public void connect(String location)
     {
@@ -100,6 +112,12 @@ public class App
         }
     }
 
+    /**
+     * This is the method used to return an array list of Countries.
+     * Dependant on the SQL used in the method.
+     *
+     * @return ArrayList<Country> List of Countries
+     */
     public ArrayList<Country> getCountry()
     {
         try
@@ -139,170 +157,6 @@ public class App
         }
     }
 
-    /**
-     * Prints a list of countries.
-     * @param country The list of countries to print.
-     */
-
-    public void printCountries(ArrayList<Country> country)
-    {
-        // Check countries is not null
-        if (country == null)
-        {
-            System.out.println("No countries");
-            return;
-        }
-
-        // Print header
-        System.out.println(String.format("%-40s %-40s %-40s %-40s %-40s %-40s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
-        // Loop over all countries in the list
-        for (Country cnt : country)
-        {
-            if (cnt == null)
-                continue;
-            String cnt_string =
-                    String.format("%-40s %-40s %-40s %-40s %-40s %-40s",
-                            cnt.code, cnt.name, cnt.continent, cnt.region, cnt.population, cnt.capital);
-            System.out.println(cnt_string);
-        }
-    }
-
-
-
-
-    public ArrayList<Language> getLanguage()
-    {
-        try
-        {
-            {
-                // Create an SQL statement
-                Statement stmt = con.createStatement();
-                // Create string for SQL statement
-                String strSelect =
-                        "SELECT countrylanguage.Language, SUM(country.Population * countrylanguage.Percentage / 100) AS speakers, " +
-                                "SUM(country.Population * countrylanguage.Percentage / 100) / " +
-                                "(SELECT sum(Population)FROM country) * 100 AS percentage_speakers " +
-                                " FROM country " +
-                                " JOIN countrylanguage ON countrylanguage.CountryCode = country.Code " +
-                                " WHERE countrylanguage.Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')" +
-                                " GROUP BY countrylanguage.Language" +
-                                " ORDER BY speakers DESC;";
-
-                // Execute SQL statement
-                ResultSet rset = stmt.executeQuery(strSelect);
-                // Extract employee information
-                ArrayList<Language> language = new ArrayList<Language>();
-                while (rset.next())
-                {
-                    Language cnt = new Language();
-                    cnt.language = rset.getString("countryLanguage.Language");
-                    cnt.Population = rset.getLong("speakers");
-                    cnt.percentage = rset.getFloat("percentage_speakers");
-                    language.add(cnt);
-                }
-                return language;
-
-            }
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get language details");
-            return null;
-        }
-    }
-
-    public ArrayList<CapitalCity> getCapitalCity()
-    {
-        try
-        {
-            {
-                // Create an SQL statement
-                Statement stmt = con.createStatement();
-                // Create string for SQL statement
-                String strSelect =
-                        "SELECT Name, CountryCode, District, Population\n" +
-                                "FROM city\n" +
-                                "WHERE city.ID IN ( SELECT capital FROM country WHERE continent = 'Asia')\n" +
-                                "ORDER BY Population DESC\n LIMIT 0,5;";
-
-                // Execute SQL statement
-                ResultSet rset = stmt.executeQuery(strSelect);
-                // Extract city information
-                ArrayList<CapitalCity> city = new ArrayList<CapitalCity>();
-                while (rset.next())
-                {
-                    CapitalCity ccy = new CapitalCity();
-                    ccy.Name = rset.getString("city.Name");
-                    ccy.CountryCode = rset.getString("city.CountryCode");
-                    ccy.District = rset.getString("city.District");
-                    ccy.Population = rset.getInt("city.Population");
-                    city.add(ccy);
-                }
-                return city;
-
-            }
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get capital city details");
-            return null;
-        }
-    }
-
-
-    /**
-     * Prints languages
-     */
-    public void printLanguage(ArrayList<Language> language)
-    {
-        // Check language is not null
-        if (language == null)
-        {
-            System.out.println("No languages");
-            return;
-        }
-
-        // Print header
-        System.out.println(String.format("%-40s %-40s %-40s", "language", "Population", "Percentage"));
-        // Loop over all languages in the list
-        for (Language cnt : language)
-        {
-            if (cnt == null)
-                continue;
-
-            String cnt_string =
-                    String.format("%-40s %-40s %-40s",
-                            cnt.language, cnt.Population, cnt.percentage);
-            System.out.println(cnt_string);
-        }
-    }
-
-    /**
-     * Prints a list of Capital Cities.
-     */
-    public void printCapitalCities(ArrayList<CapitalCity> city)
-    {
-        // Check capital city is not null
-        if (city == null)
-        {
-            System.out.println("No capital cities");
-            return;
-        }
-        // Print header
-        System.out.println(String.format("%-40s %-40s %-40s %-40s ", "Name", "CountryCode", "District", "Population"));
-        // Loop over all capital cities in the list
-        for (CapitalCity ccy : city)
-        {
-            if (ccy == null)
-                continue;
-            String ccy_string =
-                    String.format("%-40s %-40s %-40s %-40s",
-                            ccy.Name, ccy.CountryCode, ccy.District, ccy.Population);
-            System.out.println(ccy_string);
-        }
-    }
 
     /**
      * This is the method used to return an array list of Cities.
@@ -348,6 +202,79 @@ public class App
     }
 
     /**
+     * This is the method used to return an array list of Capital Cities.
+     * Dependant on the SQL used in the method.
+     *
+     * @return ArrayList<Country> List of Capital Cities.
+     */
+    public ArrayList<CapitalCity> getCapitalCity()
+    {
+        try
+        {
+            {
+                // Create an SQL statement
+                Statement stmt = con.createStatement();
+                // Create string for SQL statement
+                String strSelect =
+                        "SELECT Name, CountryCode, District, Population\n" +
+                                "FROM city\n" +
+                                "WHERE city.ID IN ( SELECT capital FROM country WHERE region = \"Caribbean\" )\n" +
+                                "ORDER BY Population DESC\n";
+
+                // Execute SQL statement
+                ResultSet rset = stmt.executeQuery(strSelect);
+                // Extract city information
+                ArrayList<CapitalCity> city = new ArrayList<CapitalCity>();
+                while (rset.next())
+                {
+                    CapitalCity ccy = new CapitalCity();
+                    ccy.Name = rset.getString("city.Name");
+                    ccy.CountryCode = rset.getString("city.CountryCode");
+                    ccy.District = rset.getString("city.District");
+                    ccy.Population = rset.getInt("city.Population");
+                    city.add(ccy);
+                }
+                return city;
+
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital city details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of countries.
+     * @param country Array List of Countries to be printed to system out.
+     */
+    public void printCountries(ArrayList<Country> country)
+    {
+        // Check countries is not null
+        if (country == null)
+        {
+            System.out.println("No countries");
+            return;
+        }
+
+        // Print header
+        System.out.println(String.format("%-40s %-40s %-40s %-40s %-40s %-40s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+        // Loop over all countries in the list
+        for (Country cnt : country)
+        {
+            if (cnt == null)
+                continue;
+            String cnt_string =
+                    String.format("%-40s %-40s %-40s %-40s %-40s %-40s",
+                            cnt.code, cnt.name, cnt.continent, cnt.region, cnt.population, cnt.capital);
+            System.out.println(cnt_string);
+        }
+    }
+
+
+    /**
      * Prints a list of cities.
      * @param city Array List of Cities to be printed to system out.
      */
@@ -372,6 +299,32 @@ public class App
                     String.format("%-40s %-40s %-40s %-40s",
                             cnt.Name, cnt.CountryCode, cnt.District, cnt.Population);
             System.out.println(cnt_string);
+        }
+    }
+
+    /**
+     * Prints a list of Capital Cities.
+     * @param city Array List of Capital Cities to be printed to system out.
+     */
+    public void printCapitalCities(ArrayList<CapitalCity> city)
+    {
+        // Check capital city is not null
+        if (city == null)
+        {
+            System.out.println("No capital cities");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-40s %-40s %-40s %-40s ", "Name", "CountryCode", "District", "Population"));
+        // Loop over all capital cities in the list
+        for (CapitalCity ccy : city)
+        {
+            if (ccy == null)
+                continue;
+            String ccy_string =
+                    String.format("%-40s %-40s %-40s %-40s",
+                            ccy.Name, ccy.CountryCode, ccy.District, ccy.Population);
+            System.out.println(ccy_string);
         }
     }
 }
