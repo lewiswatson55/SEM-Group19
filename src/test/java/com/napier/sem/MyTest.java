@@ -118,4 +118,23 @@ public class MyTest {
         language.add(cnt);
         app.printLanguage(language);
     }
+
+    @Test
+    void testLanguagesToString() {
+        ArrayList<Language> language = new ArrayList<Language>();
+        Language cnt = new Language();
+        cnt.setLanguage("English");
+        cnt.setPercentage(50);
+        language.add(cnt);
+        app.printLanguage(language);
+    }
+
+    @Test
+    void testLanguagesFullConstructor() {
+        ArrayList<Language> language = new ArrayList<Language>();
+        Language cnt = new Language(50, "English", 0.5f);
+        language.add(cnt);
+        app.printLanguage(language);
+    }
+
 }
