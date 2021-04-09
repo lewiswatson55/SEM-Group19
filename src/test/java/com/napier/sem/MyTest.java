@@ -3,6 +3,8 @@ package com.napier.sem;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+
+import java.io.Console;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,12 +44,12 @@ public class MyTest {
     {
         ArrayList<Country> countries = new ArrayList<Country>();
         Country cnt = new Country();
-        cnt.code = "CHN";
-        cnt.name = "China";
-        cnt.continent = "Asia";
-        cnt.region = "Eastern Asia";
-        cnt.population = 1277558000;
-        cnt.capital = "1819";
+        cnt.setCode("CHN");
+        cnt.setName("China");
+        cnt.setContinent("Asia");
+        cnt.setRegion("Eastern Asia");
+        cnt.setPopulation(1277558000);
+        cnt.setCapital("1819");
         countries.add(cnt);
         app.printCountries(countries);
     }
@@ -79,10 +81,10 @@ public class MyTest {
     {
         ArrayList<CapitalCity> capitalCities = new ArrayList<CapitalCity>();
         CapitalCity ccy = new CapitalCity();
-        ccy.Name = "San Juan";
-        ccy.CountryCode = "PRI";
-        ccy.District = "San Juan";
-        ccy.Population = 434374;
+        ccy.setName("San Juan");
+        ccy.setCountryCode("PRI");
+        ccy.setDistrict("San Juan");
+        ccy.setPopulation(434374);
         capitalCities.add(ccy);
         app.printCapitalCities(capitalCities);
     }
@@ -113,9 +115,25 @@ public class MyTest {
     {
         ArrayList<Language> language = new ArrayList<Language>();
         Language cnt = new Language();
-        cnt.language = "English";
-        cnt.percentage = 50;
+        cnt.setLanguage("English");
+        cnt.setPopulation(1000);
+        cnt.setPercentage(50.f);
         language.add(cnt);
         app.printLanguage(language);
     }
+
+    @Test
+    void testLanguagesToString() {
+        Language cnt = new Language();
+        cnt.setLanguage("English");
+        cnt.setPercentage(50);
+        System.out.println(cnt.toString());
+    }
+
+    @Test
+    void testLanguagesFullConstructor() {
+        Language cnt = new Language(501, "English", 0.5f);
+        System.out.println(cnt.toString()); //For Review
+    }
+
 }
