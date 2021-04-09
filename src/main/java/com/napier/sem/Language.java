@@ -3,23 +3,108 @@ package com.napier.sem;
 import java.text.DecimalFormat;
 
 /**
- * Represents a language
+ * Class that represents a Language.
+ *
+ * @author  Kristiyan Tanev, Lewis Watson
+ * @version 2.0
+ * @since   2021-04-01
  */
 public class Language
 {
 
+    // Properties
     /**
-     * Country Population
+     * Population of Speakers
      */
-    public long Population;
+    private long _population;
 
     /**
      * Language
      */
-    public String language;
+    private String _language;
 
     /**
      * Percentage of the world population
      */
-    public float percentage;
+    private float _percentage;
+
+
+    // Constructors
+    /**
+     * Blank Language Constructor
+     */
+    public Language() {
+    }
+
+    /**
+     * Constructor for language class
+     * @param population Population of Speakers
+     * @param language Language Name
+     * @param percentage Percentage of world population
+     */
+    public Language(long population, String language, float percentage) {
+        _population = population;
+        _language = language;
+        _percentage = percentage;
+    }
+
+    // Getters
+    /**
+     * Returns value of _population
+     */
+    public long getPopulation(){
+        return _population;
+    }
+
+    /**
+     * Returns value of _language
+     */
+    public String getLanguage(){
+        return _language;
+    }
+
+    /**
+     * Returns value of _percentage
+     */
+    public float getPercentage(){
+        return _percentage;
+    }
+
+    // Setters
+    /**
+     * Sets private population property
+     * @param population population of speakers
+     */
+    public void setPopulation(long population){
+        _population = population;
+    }
+
+    /**
+     * Sets private language property
+     * @param language language name
+     */
+    public void setLanguage(String language) {
+        _language = language;
+    }
+
+    /**
+     * Sets private population property
+     * @param percentage percentage of world population
+     */
+    public void setPercentage(float percentage) {
+        _percentage = percentage;
+    }
+
+    // ToString Method
+    /**
+     * Returns string representation of class.
+     */
+    @Override
+    public String toString() {
+        return "Language{" +
+                "_population=" + _population +
+                ", _language='" + _language + '\'' +
+                ", _percentage=" + _percentage +
+                '}';
+    }
 }
