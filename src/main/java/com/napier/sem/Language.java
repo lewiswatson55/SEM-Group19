@@ -13,7 +13,6 @@ public class Language
 {
 
     // Properties
-
     /**
      * Population of Speakers
      */
