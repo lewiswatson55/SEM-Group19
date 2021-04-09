@@ -3,6 +3,8 @@ package com.napier.sem;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+
+import java.io.Console;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -121,20 +123,16 @@ public class MyTest {
 
     @Test
     void testLanguagesToString() {
-        ArrayList<Language> language = new ArrayList<Language>();
         Language cnt = new Language();
         cnt.setLanguage("English");
         cnt.setPercentage(50);
-        language.add(cnt);
-        app.printLanguage(language);
+        System.out.println(cnt.toString());
     }
 
     @Test
     void testLanguagesFullConstructor() {
-        ArrayList<Language> language = new ArrayList<Language>();
-        Language cnt = new Language(50, "English", 0.5f);
-        language.add(cnt);
-        app.printLanguage(language);
+        Language cnt = new Language(501, "English", 0.5f);
+        System.out.println(cnt.toString()); //For Review
     }
 
 }
