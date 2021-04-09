@@ -43,7 +43,9 @@ public class Language
      * @param percentage Percentage of world population
      */
     public Language(long population, String language, float percentage) {
-
+        _population = population;
+        _language = language;
+        _percentage = percentage;
     }
 
     // Getters
