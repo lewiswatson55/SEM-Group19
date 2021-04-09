@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 public class Language
 {
 
-    //Properties
+    // Properties
 
     /**
      * Population of Speakers
@@ -30,8 +30,7 @@ public class Language
     private float _percentage;
 
 
-    //Constructors
-
+    // Constructors
     /**
      * Blank Language Constructor
      */
@@ -39,7 +38,10 @@ public class Language
     }
 
     /**
-     * Returns value of _population
+     * Constructor for language class
+     * @param population Population of Speakers
+     * @param language Language Name
+     * @param percentage Percentage of world population
      */
     public Language(long population, String language, float percentage) {
 
@@ -92,8 +94,7 @@ public class Language
         _percentage = percentage;
     }
 
-    //ToString Method
-
+    // ToString Method
     /**
      * Returns string representation of class.
      */
