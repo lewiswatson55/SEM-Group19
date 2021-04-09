@@ -116,7 +116,8 @@ public class MyTest {
         ArrayList<Language> language = new ArrayList<Language>();
         Language cnt = new Language();
         cnt.setLanguage("English");
-        cnt.setPercentage(50);
+        cnt.setPopulation(1000);
+        cnt.setPercentage(50.f);
         language.add(cnt);
         app.printLanguage(language);
     }
