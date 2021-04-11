@@ -155,4 +155,20 @@ public class MyTest {
         System.out.println(cnt.toString()); //For Review
     }
 
+    @Test
+    void testCityToString() {
+        City cnt = new City();
+        cnt.setName("Example City");
+        cnt.setCountryCode("GB");
+        cnt.setDistrict("Example District");
+        cnt.setPopulation(2048);
+        System.out.println(cnt.toString());
+    }
+
+    @Test
+    void testCityFullConstructor() {
+        City cnt = new City("Sample City", "GB", "Sample District", 256);
+        System.out.println(cnt.toString()); //For Review
+    }
+
 }
