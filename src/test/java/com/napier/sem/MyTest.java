@@ -222,4 +222,23 @@ public class MyTest {
         System.out.println(cnt.toString()); //For Review
     }
 
+    // App.java specific tests
+
+    @Test
+    void testCreateAppObject(){
+        App a = new App();
+    }
+
+    @Test
+    void TestConnectDB() {
+        App a = new App();
+        a.connect("localhost:33060");
+    }
+
+    //@Test
+    //void TestConnectDBArg() {
+        //App a = new App();
+        //a.connect("localhost:33060");
+    //}
+
 }
