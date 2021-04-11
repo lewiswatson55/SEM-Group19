@@ -64,4 +64,10 @@ public class AppIntegrationTest
         a.disconnect();
     }
 
+    @Test
+    void TestDisconnectNoDB() {
+        App a = new App();
+        a.disconnect();
+    }
+
 }
