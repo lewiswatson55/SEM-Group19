@@ -127,6 +127,7 @@ public class MyTest {
         Language cnt = new Language();
         cnt.setLanguage("English");
         cnt.setPercentage(50);
+        cnt.setPopulation(1000);
         System.out.println(cnt.toString());
     }
 
@@ -135,5 +136,7 @@ public class MyTest {
         Language cnt = new Language(501, "English", 0.5f);
         System.out.println(cnt.toString()); //For Review
     }
+
+
 
 }
