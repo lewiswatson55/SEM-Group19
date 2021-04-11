@@ -89,6 +89,41 @@ public class MyTest {
         app.printCapitalCities(capitalCities);
     }
 
+    // City
+    @Test
+    void printCityNull()
+    {
+        app.printCities(null);
+    }
+
+    @Test
+    void printCityEmpty()
+    {
+        ArrayList<City> Cities = new ArrayList<City>();
+        app.printCities(Cities);
+    }
+
+    @Test
+    void printCityContainsNull()
+    {
+        ArrayList<City> Cities = new ArrayList<City>();
+        Cities.add(null);
+        app.printCities(Cities);
+    }
+
+    @Test
+    void printCity()
+    {
+        ArrayList<City> Cities = new ArrayList<City>();
+        City ccy = new City();
+        ccy.setName("San Juan");
+        ccy.setCountryCode("PRI");
+        ccy.setDistrict("San Juan");
+        ccy.setPopulation(434374);
+        Cities.add(ccy);
+        app.printCities(Cities);
+    }
+
     @Test
     void printLanguageNull()
     {
