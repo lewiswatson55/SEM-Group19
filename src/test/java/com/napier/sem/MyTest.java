@@ -137,6 +137,22 @@ public class MyTest {
         System.out.println(cnt.toString()); //For Review
     }
 
+    @Test
+    void testCountryToString() {
+        Country cnt = new Country();
+        cnt.setRegion("Sample Region");
+        cnt.setCode("GB");
+        cnt.setName("Example Country");
+        cnt.setContinent("Europe");
+        cnt.setCapital("Sample Capital");
+        cnt.setPopulation(1000);
+        System.out.println(cnt.toString());
+    }
 
+    @Test
+    void testCountryFullConstructor() {
+        Country cnt = new Country("GB", "Sample Country", "Sample Continent","Sample Region", 1024, "Sample Capital");
+        System.out.println(cnt.toString()); //For Review
+    }
 
 }
