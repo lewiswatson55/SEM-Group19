@@ -70,4 +70,16 @@ public class AppIntegrationTest
         a.disconnect();
     }
 
+    @Test
+    void TestMain() {
+        String[] arrayArgs = {"localhost:33060"};
+        App.main(arrayArgs);
+    }
+
+    @Test
+    void TestMainEmpty() {
+        String[] arrayArgs = {};
+        App.main(arrayArgs);
+    }
+
 }
