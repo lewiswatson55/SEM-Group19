@@ -50,4 +50,5 @@ public class AppIntegrationTest
         app.printLanguage(ccy);
         System.out.println("--------------------------");
     }
+
 }
