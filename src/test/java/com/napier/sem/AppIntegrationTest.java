@@ -42,4 +42,12 @@ public class AppIntegrationTest
         app.printCapitalCities(ccy);
         System.out.println("--------------------------");
     }
+
+    @Test
+    void testGetLanguage()
+    {
+        ArrayList<Language> ccy = app.getLanguage();
+        app.printLanguage(ccy);
+        System.out.println("--------------------------");
+    }
 }
