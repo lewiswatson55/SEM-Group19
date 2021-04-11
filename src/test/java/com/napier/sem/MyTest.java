@@ -223,31 +223,9 @@ public class MyTest {
     }
 
     // App.java specific tests
-
     @Test
     void testCreateAppObject(){
         App a = new App();
     }
-
-    @Test
-    void TestConnectDB() {
-        App a = new App();
-        a.connect("localhost:33060");
-    }
-
-    @Test
-    void TestDisconnectDB() {
-        App a = new App();
-        a.connect("localhost:33060");
-        a.disconnect();
-    }
-
-    //@Test
-    //void TestConnectDBArg() {
-        //App a = new App();
-        //a.connect("localhost:33060");
-    //}
-
-
 
 }
