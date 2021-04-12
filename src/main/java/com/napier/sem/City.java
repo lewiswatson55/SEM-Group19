@@ -106,7 +106,7 @@ public class City
 
     /**
      * Sets property name
-     * @param population
+     * @param population Population of City
      */
     public void setPopulation(int population) {
         this.population = population;

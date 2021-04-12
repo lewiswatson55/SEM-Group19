@@ -42,4 +42,44 @@ public class AppIntegrationTest
         app.printCapitalCities(ccy);
         System.out.println("--------------------------");
     }
+
+    @Test
+    void testGetLanguage()
+    {
+        ArrayList<Language> ccy = app.getLanguage();
+        app.printLanguage(ccy);
+        System.out.println("--------------------------");
+    }
+
+    @Test
+    void TestConnectDB() {
+        App a = new App();
+        a.connect("localhost:33060");
+    }
+
+    @Test
+    void TestDisconnectDB() {
+        App a = new App();
+        a.connect("localhost:33060");
+        a.disconnect();
+    }
+
+    @Test
+    void TestDisconnectNoDB() {
+        App a = new App();
+        a.disconnect();
+    }
+
+    @Test
+    void TestMain() {
+        String[] arrayArgs = {"localhost:33060"};
+        App.main(arrayArgs);
+    }
+
+    @Test
+    void TestMainEmpty() {
+        String[] arrayArgs = {};
+        App.main(arrayArgs);
+    }
+
 }
