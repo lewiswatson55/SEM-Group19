@@ -89,6 +89,41 @@ public class MyTest {
         app.printCapitalCities(capitalCities);
     }
 
+    // City
+    @Test
+    void printCityNull()
+    {
+        app.printCities(null);
+    }
+
+    @Test
+    void printCityEmpty()
+    {
+        ArrayList<City> Cities = new ArrayList<City>();
+        app.printCities(Cities);
+    }
+
+    @Test
+    void printCityContainsNull()
+    {
+        ArrayList<City> Cities = new ArrayList<City>();
+        Cities.add(null);
+        app.printCities(Cities);
+    }
+
+    @Test
+    void printCity()
+    {
+        ArrayList<City> Cities = new ArrayList<City>();
+        City ccy = new City();
+        ccy.setName("San Juan");
+        ccy.setCountryCode("PRI");
+        ccy.setDistrict("San Juan");
+        ccy.setPopulation(434374);
+        Cities.add(ccy);
+        app.printCities(Cities);
+    }
+
     @Test
     void printLanguageNull()
     {
@@ -127,6 +162,7 @@ public class MyTest {
         Language cnt = new Language();
         cnt.setLanguage("English");
         cnt.setPercentage(50);
+        cnt.setPopulation(1000);
         System.out.println(cnt.toString());
     }
 
@@ -134,6 +170,62 @@ public class MyTest {
     void testLanguagesFullConstructor() {
         Language cnt = new Language(501, "English", 0.5f);
         System.out.println(cnt.toString()); //For Review
+    }
+
+    @Test
+    void testCountryToString() {
+        Country cnt = new Country();
+        cnt.setRegion("Sample Region");
+        cnt.setCode("GB");
+        cnt.setName("Example Country");
+        cnt.setContinent("Europe");
+        cnt.setCapital("Sample Capital");
+        cnt.setPopulation(1000);
+        System.out.println(cnt.toString());
+    }
+
+    @Test
+    void testCountryFullConstructor() {
+        Country cnt = new Country("GB", "Sample Country", "Sample Continent","Sample Region", 1024, "Sample Capital");
+        System.out.println(cnt.toString()); //For Review
+    }
+
+    @Test
+    void testCityToString() {
+        City cnt = new City();
+        cnt.setName("Example City");
+        cnt.setCountryCode("GB");
+        cnt.setDistrict("Example District");
+        cnt.setPopulation(2048);
+        System.out.println(cnt.toString());
+    }
+
+    @Test
+    void testCityFullConstructor() {
+        City cnt = new City("Sample City", "GB", "Sample District", 256);
+        System.out.println(cnt.toString()); //For Review
+    }
+
+    @Test
+    void testCapitalCityToString() {
+        CapitalCity cnt = new CapitalCity();
+        cnt.setName("Example City");
+        cnt.setCountryCode("GB");
+        cnt.setDistrict("Example District");
+        cnt.setPopulation(2048);
+        System.out.println(cnt.toString());
+    }
+
+    @Test
+    void testCapitalCityFullConstructor() {
+        CapitalCity cnt = new CapitalCity("Sample City", "GB", "Sample District", 256);
+        System.out.println(cnt.toString()); //For Review
+    }
+
+    // App.java specific tests
+    @Test
+    void testCreateAppObject(){
+        App a = new App();
     }
 
 }
