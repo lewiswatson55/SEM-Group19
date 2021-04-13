@@ -9,18 +9,18 @@
 This repository is for our Group Project
 Our team comprises of Kristiyan, Amy, Lewis and Lee. 
 
-**Table**
+**SQL Output Table**
 
 ID | Name | Met | Screenshot
 --- | --- | --- | ---
 1 | All countries in a specific continent largest population to smallest  (Asia) | Yes | ![image](https://user-images.githubusercontent.com/77793892/114628751-4b366d00-9caf-11eb-97a7-272ce4e5bc92.png)
 2 | All countries in the world largest population to smallest | Yes | ![image](https://user-images.githubusercontent.com/77793892/114628799-5ab5b600-9caf-11eb-9d75-ce17ba31621b.png)
-3 | N/A | Yes | N/A
-4 | N/A | Yes | N/A
-5 | N/A | Yes | N/A
-6 | N/A | Yes | N/A
-7 | N/A | Yes | N/A
-8 | N/A | Yes | N/A
+3 | All cities in a continent largest population to smallest (Europe) | Yes | ![image](https://user-images.githubusercontent.com/77793892/114628853-7ae57500-9caf-11eb-868f-5c12a48e96d4.png)
+4 | All cities in a region largest population to smallest (Middle East) | Yes | ![image](https://user-images.githubusercontent.com/77793892/114628872-85a00a00-9caf-11eb-8eed-413a105fc578.png)
+5 | All cities in a country. Largest population to smallest (Russia) | Yes | ![image](https://user-images.githubusercontent.com/77793892/114628901-8fc20880-9caf-11eb-814e-5aaac9d1c2db.png)
+6 | All cities in a district (California) | Yes | ![image](https://user-images.githubusercontent.com/77793892/114628967-ae280400-9caf-11eb-9cea-e231baca1562.png)
+7 | All countries in a region population largest to smallest (Eastern Asia) | Yes | ![image](https://user-images.githubusercontent.com/77793892/114629004-bda74d00-9caf-11eb-80df-71d36c4a51e9.png)
+8 | All cities in the world population largest to smallest | Yes | ![image](https://user-images.githubusercontent.com/77793892/114629034-c861e200-9caf-11eb-8ba7-fd214e3e13ef.png)
 9 | N/A | Yes | N/A
 10 | N/A | Yes | N/A
 11 | N/A | Yes | N/A
