@@ -13,8 +13,8 @@ Our team comprises of Kristiyan, Amy, Lewis and Lee.
 
 ID | Name | Met | Screenshot
 --- | --- | --- | ---
-1 | N/A | Yes | N/A
-2 | N/A | Yes | N/A
+1 | All countries in a specific continent largest population to smallest  (Asia) | Yes | ![image](https://user-images.githubusercontent.com/77793892/114628751-4b366d00-9caf-11eb-97a7-272ce4e5bc92.png)
+2 | All countries in the world largest population to smallest | Yes | ![image](https://user-images.githubusercontent.com/77793892/114628799-5ab5b600-9caf-11eb-9d75-ce17ba31621b.png)
 3 | N/A | Yes | N/A
 4 | N/A | Yes | N/A
 5 | N/A | Yes | N/A
