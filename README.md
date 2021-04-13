@@ -34,7 +34,7 @@ ID | Name | Met | Screenshot
 19 | N/A | Yes | N/A
 20 | N/A | Yes | N/A
 21 | N/A | Yes | N/A
-22  N/A | Yes | N/A
+22 | N/A | Yes | N/A
 23 | N/A | Yes | N/A
 24 | N/A | Yes | N/A
 25 | N/A | Yes | N/A
