@@ -13,7 +13,7 @@ Our team comprises of Kristiyan, Amy, Lewis and Lee.
 
 ID | Name | Met | Screenshot
 --- | --- | --- | ---
-1 | N/A | Yes | N/A
+1 | N/A | Yes | ![image](https://user-images.githubusercontent.com/77793892/114628628-0f9ba300-9caf-11eb-85bf-7796a84035d0.png)
 2 | N/A | Yes | N/A
 3 | N/A | Yes | N/A
 4 | N/A | Yes | N/A
