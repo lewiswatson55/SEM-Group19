@@ -9,6 +9,39 @@
 This repository is for our Group Project
 Our team comprises of Kristiyan, Amy, Lewis and Lee. 
 
+**Table**
+
 ID | Name | Met | Screenshot
 --- | --- | --- | ---
-1 | Test | Yes | Blank
+1 | N/A | Yes | N/A
+2 | N/A | Yes | N/A
+3 | N/A | Yes | N/A
+4 | N/A | Yes | N/A
+5 | N/A | Yes | N/A
+6 | N/A | Yes | N/A
+7 | N/A | Yes | N/A
+8 | N/A | Yes | N/A
+9 | N/A | Yes | N/A
+10 | N/A | Yes | N/A
+11 | N/A | Yes | N/A
+12 | N/A | Yes | N/A
+13 | N/A | Yes | N/A
+14 | N/A | Yes | N/A
+15 | N/A | Yes | N/A
+16 | N/A | Yes | N/A
+17 | N/A | Yes | N/A
+18 | N/A | Yes | N/A
+19 | N/A | Yes | N/A
+20 | N/A | Yes | N/A
+21 | N/A | Yes | N/A
+22  N/A | Yes | N/A
+23 | N/A | Yes | N/A
+24 | N/A | Yes | N/A
+25 | N/A | Yes | N/A
+26 | N/A | Yes | N/A
+27 | N/A | Yes | N/A
+28 | N/A | Yes | N/A
+29 | N/A | Yes | N/A
+30 | N/A | Yes | N/A
+31 | N/A | Yes | N/A
+32 | N/A | Yes | N/A
