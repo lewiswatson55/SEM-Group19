@@ -41,7 +41,7 @@ ID | Name | Met | Screenshot
 26 | The population of people, people living in cities, and people not living in cities in each country. | Yes | ![image](https://user-images.githubusercontent.com/77793892/114629693-f3990100-9cb0-11eb-9d53-ee53f6dad1b8.png)
 27 | The population of people, people living in cities, and people not living in cities in each region. | Yes | ![image](https://user-images.githubusercontent.com/77793892/114629720-00b5f000-9cb1-11eb-830c-83e040139ec0.png)
 28 | The population of people, people living in cities, and people not living in cities in each continent. | Yes | ![image](https://user-images.githubusercontent.com/77793892/114629743-0ca1b200-9cb1-11eb-973a-688b614e0cf8.png)
-29 | N/A | Yes | N/A
-30 | N/A | Yes | N/A
-31 | N/A | Yes | N/A
-32 | N/A | Yes | N/A
+29 | The top N populated cities in a continent where N is provided by the user. (Top 5, Asia) | Yes | ![image](https://user-images.githubusercontent.com/77793892/114700984-25927d80-9d1a-11eb-97d6-f6323302ab69.png)
+30 | The top N populated cities in the world where N is provided by the user. (Top 5) | Yes | ![image](https://user-images.githubusercontent.com/77793892/114701259-7d30e900-9d1a-11eb-88da-956e7b7de019.png)
+31 | The top N populated cities in a country where N is provided by the user. (Top 5, Australia) | Yes | ![image](https://user-images.githubusercontent.com/77793892/114701956-5cb55e80-9d1b-11eb-8d6a-79bf50cea91d.png)
+32 | The top N populated cities in a region where N is provided by the user. (Top 5, Southern Europe) | Yes | ![image](https://user-images.githubusercontent.com/77793892/114702249-bc136e80-9d1b-11eb-9034-753eac0bbfcb.png)
