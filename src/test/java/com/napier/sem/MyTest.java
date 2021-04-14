@@ -53,39 +53,6 @@ public class MyTest {
         countries.add(cnt);
         app.printCountries(countries);
     }
-    @Test
-    void printCityNull()
-    {
-        app.printCities(null);
-    }
-
-    @Test
-    void printCityEmpty()
-    {
-        ArrayList<City> cities = new ArrayList<City>();
-        app.printCities(cities);
-    }
-
-    @Test
-    void printCityContainsNull()
-    {
-        ArrayList<City> cities = new ArrayList<City>();
-        cities.add(null);
-        app.printCities(cities);
-    }
-
-    @Test
-    void printCity()
-    {
-        ArrayList<City> cities = new ArrayList<City>();
-        City ccy = new City();
-        ccy.Name = "San Juan";
-        ccy.CountryCode = "PRI";
-        ccy.District = "San Juan";
-        ccy.Population = 434374;
-        cities.add(ccy);
-        app.printCities(cities);
-    }
 
     @Test
     void printCapitalCityNull()
