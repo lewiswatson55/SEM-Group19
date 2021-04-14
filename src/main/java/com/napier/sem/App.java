@@ -21,7 +21,7 @@ public class App
         // Connect to database
         if (args.length < 1)
         {
-            a.connect("localhost:3306");
+            a.connect("localhost:33060");
         }
         else
         {
@@ -143,12 +143,12 @@ public class App
                 while (rset.next())
                 {
                     Country cnt = new Country();
-                    cnt.code = rset.getString("country.code");
-                    cnt.name = rset.getString("country.name");
-                    cnt.continent = rset.getString("country.continent");
-                    cnt.region = rset.getString("country.region");
-                    cnt.population = rset.getInt("country.population");
-                    cnt.capital = rset.getString("country.capital");
+                    cnt.setCode(rset.getString("country.code"));
+                    cnt.setName(rset.getString("country.name"));
+                    cnt.setContinent(rset.getString("country.continent"));
+                    cnt.setRegion(rset.getString("country.region"));
+                    cnt.setPopulation(rset.getInt("country.population"));
+                    cnt.setCapital(rset.getString("country.capital"));
                     country.add(cnt);
                 }
                 return country;
@@ -193,10 +193,10 @@ public class App
                 while (rset.next())
                 {
                     City cnt = new City();
-                    cnt.Name = rset.getString("city.Name");
-                    cnt.CountryCode = rset.getString("city.CountryCode");
-                    cnt.District = rset.getString("city.District");
-                    cnt.Population = rset.getInt("city.Population");
+                    cnt.setName(rset.getString("city.Name"));
+                    cnt.setCountryCode(rset.getString("city.CountryCode"));
+                    cnt.setDistrict(rset.getString("city.District"));
+                    cnt.setPopulation(rset.getInt("city.Population"));
                     city.add(cnt);
                 }
                 return city;
@@ -239,10 +239,10 @@ public class App
                 while (rset.next())
                 {
                     CapitalCity ccy = new CapitalCity();
-                    ccy.Name = rset.getString("city.Name");
-                    ccy.CountryCode = rset.getString("city.CountryCode");
-                    ccy.District = rset.getString("city.District");
-                    ccy.Population = rset.getInt("city.Population");
+                    ccy.setName(rset.getString("city.Name"));
+                    ccy.setCountryCode(rset.getString("city.CountryCode"));
+                    ccy.setDistrict(rset.getString("city.District"));
+                    ccy.setPopulation(rset.getInt("city.Population"));
                     city.add(ccy);
                 }
                 return city;
@@ -279,7 +279,7 @@ public class App
                 continue;
             String cnt_string =
                     String.format("%-40s %-40s %-40s %-40s %-40s %-40s",
-                            cnt.code, cnt.name, cnt.continent, cnt.region, cnt.population, cnt.capital);
+                            cnt.getCode(), cnt.getName(), cnt.getContinent(), cnt.getRegion(), cnt.getPopulation(), cnt.getCapital());
             System.out.println(cnt_string);
         }
     }
@@ -308,7 +308,7 @@ public class App
 
             String cnt_string =
                     String.format("%-40s %-40s %-40s %-40s",
-                            cnt.Name, cnt.CountryCode, cnt.District, cnt.Population);
+                            cnt.getName(), cnt.getCountryCode(), cnt.getDistrict(), cnt.getPopulation());
             System.out.println(cnt_string);
         }
     }
@@ -334,7 +334,7 @@ public class App
                 continue;
             String ccy_string =
                     String.format("%-40s %-40s %-40s %-40s",
-                            ccy.Name, ccy.CountryCode, ccy.District, ccy.Population);
+                            ccy.getName(), ccy.getCountryCode(), ccy.getDistrict(), ccy.getPopulation());
             System.out.println(ccy_string);
         }
     }
@@ -364,9 +364,9 @@ public class App
                 while (rset.next())
                 {
                     Language cnt = new Language();
-                    cnt.language = rset.getString("countryLanguage.Language");
-                    cnt.Population = rset.getLong("speakers");
-                    cnt.percentage = rset.getFloat("percentage_speakers");
+                    cnt.setLanguage(rset.getString("countryLanguage.Language"));
+                    cnt.setPopulation(rset.getLong("speakers"));
+                    cnt.setPercentage(rset.getFloat("percentage_speakers"));
                     language.add(cnt);
                 }
                 return language;
@@ -400,7 +400,7 @@ public class App
 
             String cnt_string =
                     String.format("%-40s %-40s %-40s",
-                            cnt.language, cnt.Population, cnt.percentage);
+                            cnt.getLanguage(), cnt.getPopulation(), cnt.getPercentage());
             System.out.println(cnt_string);
         }
     }
