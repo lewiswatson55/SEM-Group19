@@ -35,10 +35,10 @@ public class App
         //a.printCountries(country);
 
         // City information
-        //ArrayList<City> city = a.getCity();
+        ArrayList<City> city = a.getCity();
 
         // print city information
-        //a.printCities(city);
+        a.printCities(city);
 
         // City information
         //ArrayList<CapitalCity> city = a.getCapitalCity();
@@ -47,10 +47,10 @@ public class App
         //a.printCapitalCities(city);
 
         // Language information
-        ArrayList<Language> language = a.getLanguage();
+        //ArrayList<Language> language = a.getLanguage();
 
         //print language information
-        a.printLanguage(language);
+        //a.printLanguage(language);
 
         // Disconnect from database
         a.disconnect();
@@ -86,7 +86,7 @@ public class App
             try
             {
                 // Wait a bit for db to start
-                Thread.sleep(30000);
+                Thread.sleep(0);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
@@ -180,7 +180,11 @@ public class App
                 // Create string for SQL statement
                 String strSelect =
                         "SELECT city.Name, city.CountryCode, city.District, city.Population "
-                                + "FROM city,country WHERE country.Code = city.CountryCode AND country.Region = 'Middle East' ORDER BY city.Population DESC;";
+                                + "FROM city, country \n" +
+                                "WHERE country.Code = city.CountryCode\n" +
+                                "AND country.Name = 'Australia'\n" +
+                                "ORDER BY city.Population DESC LIMIT 0,5;";
+
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
@@ -223,9 +227,10 @@ public class App
                 // Create string for SQL statement
                 String strSelect =
                         "SELECT Name, CountryCode, District, Population\n" +
-                                "FROM city\n" +
-                                "WHERE city.ID IN ( SELECT capital FROM country WHERE region = \"Caribbean\" )\n" +
-                                "ORDER BY Population DESC\n";
+                                "FROM city, country \n" +
+                                "WHERE country.Code = city.CountryCode\n" +
+                                "AND country.Name = 'Australia'\n" +
+                                "ORDER BY city.Population DESC LIMIT 0,5;";
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
